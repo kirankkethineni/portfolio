@@ -1,0 +1,109 @@
+/* TIMELINE COMPONENT */
+.timeline-section {
+    position: relative;
+    max-width: 800px;
+    margin: 4rem auto;
+    padding-left: 140px;
+    /* Space for year label */
+}
+
+/* The Vertical Line */
+.timeline-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 120px;
+    /* Line position */
+    width: 2px;
+    background: var(--border-light);
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 4rem;
+}
+
+/* The Dot */
+.timeline-entry::before {
+    content: '';
+    position: absolute;
+    /*
+       Container padding-left: 140px.
+       Line left: 120px.
+       Difference: -20px relative to entry content start.
+       Dot width: 12px -> center at 6px.
+       Left: -20px - 6px = -26px.
+    */
+    left: -26px;
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--white);
+    border: 2px solid var(--black);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* The Year Label - Moved to left */
+.timeline-year-label {
+    position: absolute;
+    left: -140px;
+    /* Move into the padding area */
+    width: 110px;
+    /* Width up to near the line */
+    text-align: right;
+    top: 0px;
+    font-weight: 700;
+    color: var(--black);
+    font-size: 1rem;
+    line-height: 1.2;
+    padding-right: 15px;
+}
+
+.timeline-role {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.25rem;
+    margin-top: -5px;
+    /* Alignment fix with dot */
+}
+
+.timeline-location {
+    font-size: 0.95rem;
+    color: var(--gray-500);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timeline-body {
+    color: var(--gray-500);
+    max-width: 650px;
+}
+
+@media (max-width: 768px) {
+    .timeline-section {
+        padding-left: 40px;
+    }
+
+    .timeline-section::before {
+        left: 20px;
+    }
+
+    .timeline-entry::before {
+        left: -26px;
+        /* 20 (line) - 40 (padding) - 6 (half dot) = -26 */
+    }
+
+    .timeline-year-label {
+        position: relative;
+        left: 0;
+        text-align: left;
+        margin-bottom: 0.5rem;
+        width: auto;
+        padding-right: 0;
+        color: var(--gray-500);
+    }
+}

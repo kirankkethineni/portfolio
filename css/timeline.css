@@ -1,0 +1,76 @@
+/* TIMELINE COMPONENT */
+.timeline-section {
+    position: relative;
+    max-width: 800px;
+    margin: 4rem auto;
+    padding-left: 2rem;
+}
+
+.timeline-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    background: var(--border-light);
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 4rem;
+    padding-left: 2rem;
+}
+
+.timeline-entry::before {
+    content: '';
+    position: absolute;
+    left: -25px;
+    /* Adjust based on dot size and padding */
+    top: 5px;
+    width: 12px;
+    height: 12px;
+    background: var(--white);
+    border: 2px solid var(--black);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Adjust left dot position */
+.timeline-section {
+    padding-left: 30px;
+    /* Space for line */
+}
+
+.timeline-entry::before {
+    left: -37px;
+    /* (30px padding + half dot width) approx */
+}
+
+.timeline-year-label {
+    font-weight: 700;
+    color: var(--black);
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.timeline-role {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 0.25rem;
+}
+
+.timeline-location {
+    font-size: 0.95rem;
+    color: var(--gray-500);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timeline-body {
+    color: var(--gray-500);
+    max-width: 650px;
+}
