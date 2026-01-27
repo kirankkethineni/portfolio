@@ -1,57 +1,86 @@
-
 const RESEARCH_DATA = {
     "chroma-sense": {
-        title: "Chroma-Sense: Memory-Efficient Classification",
-        overview: "A memory-efficient plant leaf disease classification model for edge devices that processes R, G, B channels independently to lower RAM and flash usage.",
-        motivation: "Edge devices in smart agriculture have limited resources (RAM/Flash) and cannot run heavy CNNs. Cloud computing suffers from latency and connectivity issues in remote farms.",
-        approach: "Implemented 'Sequential Multi-Channel Processing'. The model uses the same feature extractor for R, G, and B channels serially, utilizing a shared buffer, then concatenates features for classification. Quantized to Int8 for TinyML efficiency.",
-        results: "Achieved 25% reduction in peak RAM and 60% reduction in Flash memory usage compared to standard MobileNetV2, while maintaining high accuracy (94% on Apple, 91% on Tomato datasets).",
-        paperLink: "Chroma-Sense_2023-XXX-R0.pdf",
-        githubLink: "https://github.com/kirankkethineni/ChromaSense.git"
+        title: "Chroma-Sense: Memory-Efficient Edge AI",
+        overviewImage: "images/chroma_sense.svg",
+        problemImage: "images/chroma_sense.svg",
+        innovationImage: "images/chroma_sense.svg",
+        resultsImage: "images/chroma_sense.svg",
+        overview: "A memory-efficient sequential multi-channel CNN architecture designed for plant disease classification on resource-constrained edge devices / IoT.",
+        problem: "Standard CNNs (like ResNet, MobileNet) are often too heavy for edge devices with limited RAM and Flash memory. Sending data to the cloud for processing introduces latency, requires connectivity, and raises privacy concerns.",
+        methodology: "Introduced 'Serial Multi-Channel Processing': instead of processing RGB channels simultaneously, it processes each channel sequentially using a shared feature extractor. This weight-sharing drastically reduces the model's parameter count. It employs 'Global Max Pooling' to better capture localized disease spots compared to average pooling.",
+        novelty: "The first architecture to decouple color channels for memory efficiency in agricultural AI. It reduces the model width by ~66% while reusing the same weights, making it fit on microcontrollers (TinyML).",
+        results: "Achieved **93% classification accuracy** on PlantVillage datasets. Reduced **Peak RAM usage by 25%** and **Flash memory usage by 60%** compared to MobileNetV2. Validated on Arduino Nicla Vision running at ~8 FPS.",
+        paperLink: "IEEE-CAI_2025_ChromaSense.pdf",
+        githubLink: "#"
     },
-    "weed-out": {
-        title: "WeedOut: Non-CNN Weed Management",
-        overview: "A semi-supervised, non-CNN Agriculture Cyber-Physical System (A-CPS) for weed management that relies on crop shape and size rather than texture.",
-        motivation: "CNNs require massive labeled training data and struggle with unknown weed species or varying environmental conditions. Manual weeding is labor-intensive, and blanket herbicide spraying is environmentally harmful.",
-        approach: "Utilizes 'Profile Plots' to capture shape/size geometry and Dynamic Time Warping (DTW) to cluster crops. A farmer identifies the primary crop cluster (semi-supervised), and the system classifies the rest as weeds without prior training.",
-        results: "Achieved 89% classification accuracy. Highly adaptable to different growth stages and environments without the need for retraining, unlike fixed-architecture CNNs.",
+    "weedout": {
+        title: "WeedOut: Zero-Shot Weed Management",
+        overviewImage: "images/weedout.svg",
+        problemImage: "images/weedout.svg",
+        innovationImage: "images/weedout.svg",
+        resultsImage: "images/weedout.svg",
+        overview: "A semi-supervised, non-CNN Agriculture Cyber-Physical System (A-CPS) that classifies weeds based on crop profile, shape, and size, requiring no prior training.",
+        problem: "Deep learning models require massive labeled datasets and struggle to generalize to unseen weed species or different growth stages. Farmers need a 'plug-and-play' solution that adapts instantly.",
+        methodology: "Uses a 2-pass connected component algorithm to extract individual crop shapes from drone imagery. Generates 'Profile Plots' (width vs. length graphs) for each plant. Clusters these plots using **Dynamic Time Warping (DTW)** to group similar-looking plants. The farmer labels just one cluster, and the system propagates the label to all matching plants.",
+        novelty: "Eliminates the need for large training datasets. Uses shape-based time-series matching (DTW) instead of visual feature extraction, making it robust to lighting and color variations.",
+        results: "Achieved **89% classification accuracy** with minimal human input (labeling 1-2 clusters). Demonstrated robust performance even when crops overlap.",
         paperLink: "SN-CS_2024-XXX-R0_WeedOut.pdf",
-        githubLink: "https://github.com/kirankkethineni/WeedOut.git"
+        githubLink: "#"
     },
-    "spray-craft": {
-        title: "SprayCraft: Variable Rate Precision Spraying",
-        overview: "A graph-based route optimization system for drones to perform variable rate precision spraying, targeting disease hotspots.",
-        motivation: "Disease spread is often non-uniform, originating from hotspots and diminishing outwards. Uniform spraying wastes resources and fails to address high-intensity infection zones effectively.",
-        approach: "Models the field as a graph where nodes are diseased locations. Uses message passing to identify hotspots (nodes with high influence). Solves the Traveling Salesman Problem (TSP) for an optimal flight path and adjusts spray flow rate or altitude based on infection intensity.",
-        results: "Validated on synthetic datasets. Successfully identifies hotspots and computes efficient flight paths that minimize distance while maximizing pesticide efficacy through variable dosing.",
+    "spraycraft": {
+        title: "SprayCraft: Precision Drone Routing",
+        overviewImage: "images/spraycraft.svg",
+        problemImage: "images/spraycraft.svg",
+        innovationImage: "images/spraycraft.svg",
+        resultsImage: "images/spraycraft.svg",
+        overview: "Graph-based route optimization algorithm for variable-rate precision spraying, identifying disease hotspots to minimize chemical usage.",
+        problem: "Uniform 'blanket spraying' wastes expensive chemicals and harms the environment. Drones need intelligent flight paths that prioritize high-infection areas ('hotspots') to apply variable dosages efficiently.",
+        methodology: "Models the farmland as a spatial graph where nodes are disease locations. Uses **Message Passing** (inspired by GNNs) to diffuse infection probability to neighbors, identifying 'hotspots' (dense infection clusters). Solves the **Traveling Salesman Problem (TSP)** using Christofides algorithm to find the optimal visitation order, then generates Boustrophedon (serpentine) paths for coverage.",
+        novelty: "Integrates spatial disease dynamics with robotic path planning. Can adapt pesticide intensity by varying flight altitude/speed for drones that lack variable-rate nozzles.",
+        results: "Significantly reduces pesticide volume by targeting hotspots with higher intensity. Generated routes are **near-optimal** in length, saving battery life compared to standard coverage patterns.",
         paperLink: "arXiv_2025-XXX_SprayCraft.pdf",
-        githubLink: "https://github.com/kirankkethineni/SprayCraft.git"
+        githubLink: "#"
     },
     "semantic-search": {
-        title: "Semantic-Search: Knowledge-Driven Classification",
-        overview: "A knowledge-driven classification method for plant diseases that interprets high-level semantic features (visual patterns, colors) rather than just pixel data.",
-        motivation: "Standard CNNs are 'black boxes' that require retraining for every new class. They lack interpretability and struggle with data scarcity for rare diseases.",
-        approach: "Integrates NLP to extract semantics (e.g., 'brown spots') from text to update a knowledge base. During inference, a CNN detects these semantics in the image, and a database query classifies the disease based on the identified features. No retraining is needed for new diseases.",
-        results: "Achieved 90% accuracy across 11,000 images covering 21 diseases. Offers superior scalability and explainability compared to purely data-driven models.",
+        title: "Semantic-Search: Explainable Classification",
+        overviewImage: "images/semantic_search.svg",
+        problemImage: "images/semantic_search.svg",
+        innovationImage: "images/semantic_search.svg",
+        resultsImage: "images/semantic_search.svg",
+        overview: "A knowledge-driven classification framework that interprets high-level semantic features (visual patterns, colors) rather than just pixel correlations.",
+        problem: "Deep learning 'black boxes' lack interpretability—farmers don't know *why* a plant was classified as diseased. They also struggle with rare diseases where data is scarce.",
+        methodology: "Integrates Natural Language Processing (NLP) to extract semantics (e.g., 'brown spots', 'yellow halo') from text descriptions to build a knowledge base. During inference, a CNN detects these specific semantic features in the image, and a database query classifies the disease based on the logic rule (e.g., IF has_spots AND has_yellow_halo THEN disease_X).",
+        novelty: "Decouples feature detection from classification. Can classify **new/unseen** diseases effectively if their semantic rules are added to the database, without retraining the CNN.",
+        results: "Achieved **90% accuracy** across 11,000 images covering 21 diseases. Offers superior scalability and human-readable explanations for every diagnosis.",
         paperLink: "IEEE-TAFE_2025-TAFE-02-0037-2025-R3_Semantic-Search.pdf",
-        githubLink: "https://github.com/kirankkethineni/Semantic-Search.git"
+        githubLink: "#"
     },
     "soil": {
-        title: "SOIL: Privacy-First On-Device Inference",
-        overview: "A privacy-first framework for leaf disease diagnosis that executes AI models directly within a mobile web browser, ensuring image data never leaves the user's device.",
-        motivation: "Cloud-based solutions pose privacy risks and require internet connectivity in remote fields. App-based solutions have installation friction. Farmers need a secure, instant tool that works on any device without setup.",
-        approach: "Leverages TensorFlow.js to run edge-optimized CNNs (based on Chroma-Sense) entirely client-side. Uses WebGL/WASM acceleration to perform inference locally in the browser. No app installation or server-side image processing required.",
-        results: "Validated on iPhone, Android, and Windows devices with minimal latency (e.g., ~16ms on iPhone 14). Preserves 100% data privacy while maintaining high diagnostic accuracy (up to 96%).",
+        title: "SOIL: Privacy-First On-Device AI",
+        overviewImage: "images/soil_privacy.svg",
+        problemImage: "images/soil_privacy.svg",
+        innovationImage: "images/soil_privacy.svg",
+        resultsImage: "images/soil_privacy.svg",
+        overview: "A privacy-first framework for leaf disease diagnosis that executes AI models directly within a mobile web browser using WebAssembly.",
+        problem: "Cloud-based diagnosis risks data privacy and requires internet access, which is often unreliable in remote fields. Native apps create installation friction.",
+        methodology: "Leverages **TensorFlow.js** and **WebGL/WASM** acceleration to run edge-optimized CNNs (derived from Chroma-Sense) entirely client-side in the browser. No image data ever leaves the user's device.",
+        novelty: "Zero-install, off-grid capable, and privacy-preserving by design. Optimizing heavy CNN computations for JavaScript execution environments.",
+        results: "Validated on iPhone, Android, and Windows with **~16ms inference latency** (iPhone 14). Preserves 100% data privacy while maintaining high diagnostic accuracy (up to 96%).",
         paperLink: "OCIT_2025_SOIL.pdf",
-        githubLink: "https://github.com/kirankkethineni/Soil.git"
+        githubLink: "#"
     },
     "xpress-weed": {
-        title: "XpressWeed: Few-Shot Weed Segmentation",
-        overview: "A meta-learning framework for weed segmentation that treats plant leaves as 'textures' rather than objects, enabling rapid adaptation to new weed species with minimal data.",
-        motivation: "Weeds vary immensely by region. Training a universal model is impossible, and generic few-shot learning fails due to complex leaf overlaps and Deformations. Farmers need models that adapt to their specific growing conditions quickly.",
-        approach: "Combines texture-based pre-training with Model-Agnostic Meta-Learning (MAML). The model first learns robust leaf texture priors, then uses meta-learning to fine-tune itself for new, unseen weed species using only a handful of labeled examples (12-shot learning).",
-        results: "Achieved 85% accuracy on unseen weed species using just 80 images, significantly outperforming traditional MAML (48%) and demonstrating practical rapid adaptation for real-world farming.",
+        title: "XpressWeed: Few-Shot Adaptation",
+        overviewImage: "images/xpress_weed.svg",
+        problemImage: "images/xpress_weed.svg",
+        innovationImage: "images/xpress_weed.svg",
+        resultsImage: "images/xpress_weed.svg",
+        overview: "A meta-learning framework that treats plant leaves as 'textures' rather than objects, enabling rapid adaptation to new weed species with minimal data.",
+        problem: "Weed species vary immensely by region. Training a universal model is impossible. Generic few-shot learning fails due to complex overlaps and non-rigid deformations of leaves.",
+        methodology: "Combines texture-based pre-training with **Model-Agnostic Meta-Learning (MAML)**. The model learns robust leaf texture priors (veins, surface patterns) first, then uses meta-learning to fine-tune itself for new species using just a handful of labeled examples (12-shot learning).",
+        novelty: "Shifts focus from object detection to texture analysis. Enables 'rapid adaptation' where a farmer can teach the model a new weed in minutes.",
+        results: "Achieved **85% accuracy** on unseen weed species using just **80 training images**, significantly outperforming traditional MAML (48%).",
         paperLink: "XpressWeed.pdf",
-        githubLink: "https://github.com/kirankkethineni/XpressWeed.git"
+        githubLink: "#"
     }
 };

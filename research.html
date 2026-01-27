@@ -96,11 +96,11 @@
                     <h3>Chroma-Sense</h3>
                     <span class="load-btn">Load Details →</span>
                 </div>
-                <div class="research-item" onclick="loadProject('weed-out', this)">
+                <div class="research-item" onclick="loadProject('weedout', this)">
                     <h3>WeedOut</h3>
                     <span class="load-btn">Load Details →</span>
                 </div>
-                <div class="research-item" onclick="loadProject('spray-craft', this)">
+                <div class="research-item" onclick="loadProject('spraycraft', this)">
                     <h3>SprayCraft</h3>
                     <span class="load-btn">Load Details →</span>
                 </div>
@@ -139,31 +139,40 @@
             element.classList.add('active');
 
             if (project) {
-                // Fade out effect could be added here
+                // Fade out effect
                 display.style.opacity = 0;
 
                 setTimeout(() => {
                     display.innerHTML = `
-                        <h2>${project.title}</h2>
+                        <h2 class="mb-2">${project.title}</h2>
                         
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.8rem; color:var(--gray-500); margin-bottom:0.5rem;">Overview</h4>
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Overview</h4>
                             <p>${project.overview}</p>
+                            <img src="${project.overviewImage}" alt="Overview" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; margin-top:1rem; border:1px solid var(--border-light); padding: 1rem;">
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.8rem; color:var(--gray-500); margin-bottom:0.5rem;">Motivation</h4>
-                            <p>${project.motivation}</p>
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Problem Statement</h4>
+                            <p>${project.problem}</p>
+                            <img src="${project.problemImage}" alt="Problem Statement" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; margin-top:1rem; border:1px solid var(--border-light); padding: 1rem;">
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.8rem; color:var(--gray-500); margin-bottom:0.5rem;">Approach</h4>
-                            <p>${project.approach}</p>
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Methodology</h4>
+                            <p>${project.methodology}</p>
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.8rem; color:var(--gray-500); margin-bottom:0.5rem;">Results</h4>
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Key Innovation</h4>
+                            <p>${project.novelty}</p>
+                            <img src="${project.innovationImage}" alt="Key Innovation" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; margin-top:1rem; border:1px solid var(--border-light); padding: 1rem;">
+                        </div>
+
+                        <div class="mb-4">
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Results</h4>
                             <p>${project.results}</p>
+                            <img src="${project.resultsImage}" alt="Results" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; margin-top:1rem; border:1px solid var(--border-light); padding: 1rem;">
                         </div>
 
                         <div class="mt-4 flex" style="gap:20px;">
@@ -175,9 +184,11 @@
                     // Fade in
                     display.style.transition = 'opacity 0.3s ease';
                     display.style.opacity = 1;
-                }, 100); // slight delay for visual feel
+                }, 100);
             }
         }
+
+
 
         // Auto-load first item just for better UX? Or leave empty as requested? 
         // User request: "When “Load Details” is clicked..." -> implies explicit action.
