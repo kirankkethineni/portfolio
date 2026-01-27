@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | My Name</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <style>
+        .quote-divider {
+            margin: 4rem 0;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            text-align: center;
+            font-style: italic;
+            font-family: 'Roboto', serif;
+            /* Serif flair for quotes if desired, or keeping sans */
+            font-size: 1.5rem;
+            color: var(--gray-500);
+            background-color: var(--gray-100);
+        }
+
+        .timeline-year {
+            font-weight: 700;
+            width: 80px;
+            display: inline-block;
+            color: var(--black);
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <nav class="main-nav"></nav>
+    <main class="container">
+
+        <section class="mt-4 mb-4">
+            <h1>About</h1>
+            <p>The context behind the content.</p>
+        </section>
+
+        <!-- SECTION 1: MY JOURNEY -->
+        <section class="accordion-list">
+            <div class="accordion-item">
+                <div class="accordion-header active"> <!-- Default open? Maybe -->
+                    <span>My Journey</span>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <!-- Adding active class manually to have it open by default for 'readability' on load if desired, 
+                     but sticking to collapsed to match "Intellectual Notebook" style -->
+                <div class="accordion-content">
+                    <p class="mb-2">I started in Electronics and Communication Engineering, transitioning into Computer
+                        Science to find the intersection of hardware constraints and algorithmic intelligence.</p>
+                    <p>From building production APIs at Harvard Pilgrim Health Care to engineering serverless
+                        edge-inference frameworks for my Ph.D., I am driven by the challenge of efficiency. I don't just
+                        build models; I build systems that run reliably in the real world.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUOTE DIVIDER -->
+        <div class="quote-divider">
+            "The limits of my language mean the limits of my world." <br>
+            <span style="font-size:0.9rem; margin-top:0.5rem; display:block;">— Ludwig Wittgenstein</span>
+        </div>
+
+        <!-- SECTION 2: PHILOSOPHY -->
+        <section class="accordion-list">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Philosophy of Work</span>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <p class="mb-2">I believe in "Deep Work" (Cal Newport) and "Slow Software".</p>
+                    <ul style="padding-left: 20px; list-style-type: square; color: var(--gray-500);">
+                        <li class="mb-2"><strong>Clarity over Speed:</strong> Technical debt is often clarity debt.</li>
+                        <li class="mb-2"><strong>Tools Shape Thought:</strong> We shape our tools and thereafter our
+                            tools shape us.</li>
+                        <li class="mb-2"><strong>Minimalism:</strong> Perfection is achieved not when there is nothing
+                            more to add, but when there is nothing left to take away.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUOTE DIVIDER -->
+        <div class="quote-divider">
+            "Simplicity is the ultimate sophistication." <br>
+            <span style="font-size:0.9rem; margin-top:0.5rem; display:block;">— Leonardo da Vinci</span>
+        </div>
+
+        <!-- SECTION 3: TIMELINE -->
+        <section class="accordion-list">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span>Timeline</span>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="mb-2">
+                        <span class="timeline-year">2022-Pres</span>
+                        <span>Doctoral Researcher, University of North Texas</span>
+                        <div style="font-size: 0.85rem; color: var(--gray-500); margin-left: 85px;">Focus: Edge AI,
+                            Lightweight Segmentation, Privacy-Preserving Inference</div>
+                    </div>
+                    <div class="mb-2">
+                        <span class="timeline-year">2019-2021</span>
+                        <span>Software Developer, Harvard Pilgrim Health Care</span>
+                        <div style="font-size: 0.85rem; color: var(--gray-500); margin-left: 85px;">Full-stack
+                            development (Angular, Spring Boot), Cloud Infrastructure (Azure), and CI/CD automation.
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <span class="timeline-year">2017-2018</span>
+                        <span>M.S. Computer Science, University of North Texas</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="timeline-year">2012-2016</span>
+                        <span>B.Tech Electronics & Communication, Vignan's University</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <footer></footer>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

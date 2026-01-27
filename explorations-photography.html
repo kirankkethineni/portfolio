@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography | Explorations</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* MASONRY LAYOUT */
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 20px;
+        }
+
+        .masonry-item {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+
+        .masonry-item:hover {
+            opacity: 0.8;
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            /* Grayscale filter doubled down to ensure compliance */
+            filter: grayscale(100%);
+            display: block;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            filter: grayscale(100%);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            font-family: sans-serif;
+            opacity: 0.7;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            color: #ccc;
+            font-size: 0.9rem;
+            text-align: center;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .masonry-grid {
+                column-count: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <nav class="main-nav"></nav>
+    <main class="container">
+        <section class="mt-4 mb-4">
+            <a href="explorations.html" style="font-size: 0.9rem; color: var(--gray-500);">← Back to Explorations</a>
+            <h1 class="mt-2">Photography</h1>
+            <p>Studies in light, shadow, and structure. Strictly monochrome.</p>
+        </section>
+
+        <!-- Masonry Grid -->
+        <section class="masonry-grid">
+            <!-- Using Placeholders via CSS or SVG if actual images aren't there -->
+            <!-- Generating simple colored (grayscale) placeholders for demo -->
+
+            <div class="masonry-item" onclick="openLightbox(this)">
+                <img src="https://via.placeholder.com/400x300/333333/ffffff?text=Urban+Geometry" alt="Urban Geometry">
+            </div>
+            <div class="masonry-item" onclick="openLightbox(this)">
+                <img src="https://via.placeholder.com/400x500/555555/ffffff?text=Shadows" alt="Shadows">
+            </div>
+            <div class="masonry-item" onclick="openLightbox(this)">
+                <img src="https://via.placeholder.com/400x400/222222/ffffff?text=Textures" alt="Textures">
+            </div>
+            <div class="masonry-item" onclick="openLightbox(this)">
+                <img src="https://via.placeholder.com/400x600/444444/ffffff?text=Architecture" alt="Architecture">
+            </div>
+            <div class="masonry-item" onclick="openLightbox(this)">
+                <img src="https://via.placeholder.com/400x350/111111/ffffff?text=Silence" alt="Silence">
+            </div>
+            <div class="masonry-item" onclick="openLightbox(this)">
+                <img src="https://via.placeholder.com/400x450/666666/ffffff?text=Concrete" alt="Concrete">
+            </div>
+        </section>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <footer></footer>
+    <script src="js/main.js"></script>
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+
+        function openLightbox(element) {
+            const img = element.querySelector('img');
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // prevent scroll
+        }
+
+        function closeLightbox(e) {
+            if (e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto'; // enable scroll
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "Escape" && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+
+</html>

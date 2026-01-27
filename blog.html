@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | My Name</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .blog-layout {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .category-sidebar {
+            width: 200px;
+            flex-shrink: 0;
+            border-right: 1px solid var(--border-light);
+            padding-right: 1rem;
+        }
+
+        .category-item {
+            padding: 0.5rem 0;
+            color: var(--gray-500);
+            cursor: pointer;
+            transition: color 0.3s;
+            display: block;
+        }
+
+        .category-item:hover,
+        .category-item.active {
+            color: var(--black);
+            font-weight: 600;
+        }
+
+        .blog-timeline {
+            flex-grow: 1;
+            border-left: 1px solid var(--border-light);
+            /* Timeline line */
+            padding-left: 2rem;
+            position: relative;
+            margin-left: -1px;
+            /* Align with sidebar border if needed, or keeping distinct */
+        }
+
+        /* Better timeline look */
+        .blog-timeline {
+            border-left: 2px solid var(--gray-300);
+        }
+
+        .post-item {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .post-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            /* Adjust based on padding/border */
+            top: 0.5rem;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-body);
+            border: 2px solid var(--gray-500);
+            border-radius: 50%;
+        }
+
+        .post-date {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-bottom: 0.2rem;
+            font-family: monospace;
+        }
+
+        .post-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black);
+        }
+
+        /* Accordion-like expansion within post */
+        .post-excerpt {
+            margin-bottom: 1rem;
+        }
+
+        .post-full {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--gray-300);
+        }
+
+        .post-full.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-layout {
+                flex-direction: column;
+            }
+
+            .category-sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-light);
+                padding-bottom: 1rem;
+                margin-bottom: 2rem;
+                display: flex;
+                gap: 20px;
+                overflow-x: auto;
+            }
+
+            .blog-timeline {
+                border-left: none;
+                /* simple stack on mobile */
+                padding-left: 0;
+            }
+
+            .post-item::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <nav class="main-nav"></nav>
+    <main class="container">
+        <section class="mt-4 mb-4">
+            <h1>Blog</h1>
+            <p>Thoughts in progress. Filtering by stream of consciousness.</p>
+        </section>
+
+        <section class="blog-layout">
+            <!-- SIDEBAR -->
+            <div class="category-sidebar">
+                <span class="category-item active" onclick="filterPosts('all', this)">All Posts</span>
+                <span class="category-item" onclick="filterPosts('tech', this)">Tech</span>
+                <span class="category-item" onclick="filterPosts('psychology', this)">Psychology</span>
+                <span class="category-item" onclick="filterPosts('spirituality', this)">Spirituality</span>
+            </div>
+
+            <!-- TIMELINE -->
+            <div class="blog-timeline">
+
+                <article class="post-item" data-category="tech">
+                    <div class="post-date">2025-12-15</div>
+                    <h2 class="post-title">The Death of the File System?</h2>
+                    <div class="post-excerpt">
+                        <p>With vector databases and semantic search, do we really need folders anymore? Exploring the
+                            idea of an organic, associative OS.</p>
+                    </div>
+                    <button class="btn-text" onclick="togglePost(this)">Read More</button>
+                    <div class="post-full">
+                        <p>Traditional file systems force a hierarchy that doesn't match human memory. We remember by
+                            association, not path. I've been experimenting with a local-first system that tags
+                            everything automatically...</p>
+                        <p class="mt-2">[Full article text placeholder]</p>
+                    </div>
+                </article>
+
+                <article class="post-item" data-category="spirituality">
+                    <div class="post-date">2025-11-02</div>
+                    <h2 class="post-title">Silence as Infrastructure</h2>
+                    <div class="post-excerpt">
+                        <p>Why modern cities design against silence, and how we can reclaim auditory headspace.</p>
+                    </div>
+                    <button class="btn-text" onclick="togglePost(this)">Read More</button>
+                    <div class="post-full">
+                        <p>Cities are designed for throughput, not pause. But silence is infrastructure for the mind.
+                            Without it, processing capacity degrades...</p>
+                    </div>
+                </article>
+
+                <article class="post-item" data-category="psychology">
+                    <div class="post-date">2025-09-21</div>
+                    <h2 class="post-title">Cognitive Load in Code Reviews</h2>
+                    <div class="post-excerpt">
+                        <p>Applying 'Miller's Law' to pull request sizes. Why 7 +/- 2 files is the limit for effective
+                            review.</p>
+                    </div>
+                    <button class="btn-text" onclick="togglePost(this)">Read More</button>
+                    <div class="post-full">
+                        <p>We often treat code review as specific bug hunting, but it's a social process of context
+                            sharing. When the context exceeds working memory...</p>
+                    </div>
+                </article>
+
+                <article class="post-item" data-category="tech">
+                    <div class="post-date">2025-08-10</div>
+                    <h2 class="post-title">CSS Variables are undervalued</h2>
+                    <div class="post-excerpt">
+                        <p>Moving beyond pre-processors. Native CSS variables allow for runtime theming without the
+                            build step overhead.</p>
+                    </div>
+                    <button class="btn-text" onclick="togglePost(this)">Read More</button>
+                    <div class="post-full">
+                        <p>Why I stripped SASS out of my workflow and went back to vanilla...</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+    </main>
+    <footer></footer>
+    <script src="js/main.js"></script>
+    <script>
+        function filterPosts(category, btn) {
+            // Update active state
+            document.querySelectorAll('.category-item').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+
+            // Filter
+            const posts = document.querySelectorAll('.post-item');
+            posts.forEach(post => {
+                const postCat = post.getAttribute('data-category');
+                if (category === 'all' || postCat === category) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
+        }
+
+        function togglePost(btn) {
+            const content = btn.nextElementSibling;
+            const isVisible = content.classList.contains('show');
+
+            if (isVisible) {
+                content.classList.remove('show');
+                btn.textContent = 'Read More';
+            } else {
+                content.classList.add('show');
+                btn.textContent = 'Read Less';
+            }
+        }
+    </script>
+</body>
+
+</html>

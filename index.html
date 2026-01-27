@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kiran K. Kethineni | Digital Notebook</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .hero-layout {
+            display: flex;
+            align-items: flex-start;
+            /* Align top */
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .hero-text {
+            flex: 2;
+        }
+
+        .hero-image-container {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            /* Slight roundness or strict square? keeping minimal */
+            filter: grayscale(100%);
+            /* Ensure strict grayscale */
+            display: block;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-layout {
+                flex-direction: column-reverse;
+                /* Image on top on mobile? Or text? Let's do image on top */
+                gap: 2rem;
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero-layout {
+                flex-direction: column;
+            }
+
+            .hero-image-container {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- STICKY HEADER -->
+    <header></header>
+
+    <!-- NAVIGATION -->
+    <nav class="main-nav"></nav>
+
+    <main class="container">
+        <!-- HERO SECTION -->
+        <section class="hero-layout">
+
+            <div class="hero-text">
+                <h1>Kiran K. Kethineni</h1>
+                <p style="font-size: 1.25rem; color: var(--gray-700); margin-bottom: 2rem; font-weight: 300;">
+                    Explorer of Systems, Intelligence, and Structure.
+                </p>
+
+                <p class="mb-4">
+                    Welcome to my digital space. Here, I document my journey through technology, psychology, and the
+                    quiet patterns that govern our world.
+                    This is not just a portfolio, but a living archive of my work and wanderings.
+                </p>
+
+                <p class="mb-4">
+                    I am an AI & Automation Engineer focusing on real-time perception and resource-efficient computer
+                    vision.
+                    Currently a Ph.D. researcher at the University of North Texas, I specialize in designing lightweight
+                    ML pipelines for edge and mobile platforms.
+                    My work bridges the gap between theoretical models and robust, deployable automation solutions.
+                </p>
+
+                <div class="flex" style="gap: 20px; flex-wrap: wrap;">
+                    <a href="about.html" class="btn-text">Read Full Bio</a>
+                    <a href="research.html" class="btn-text">View Research</a>
+                </div>
+            </div>
+
+            <div class="hero-image-container">
+                <img src="images/profile.jpg" alt="Kiran K. Kethineni" class="hero-image">
+            </div>
+
+        </section>
+
+        <!-- No other sections as requested (removed work/explore lists) -->
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer></footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
