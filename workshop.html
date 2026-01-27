@@ -19,42 +19,46 @@
     <nav class="main-nav"></nav>
 
     <main class="container">
-        <section class="mt-4 mb-4">
+        <section class="mt-4 mb-4" style="text-align: center;">
             <h1>The Workshop</h1>
             <p>Practical builds, hardware hacks, and personal engineering projects.</p>
         </section>
 
-        <section class="mt-4">
-            <!-- PROJECT 1: KVM ACCESS -->
-            <div class="mb-4 pb-4" style="border-bottom: 1px solid var(--border-light);">
-                <h2>Portable KVM Access</h2>
-                <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
-                <p>
-                    I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless
-                    servers and workstations directly using a single lightweight device. This setup eliminates the bulk
-                    of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.
-                </p>
-                <div
-                    style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
-                    [Image Placeholder: KVM Device Setup]
-                </div>
+        <!-- HEXAGONAL CLUSTER -->
+        <div class="hex-cluster">
+            <!-- Project 1: KVM -->
+            <div class="hex-tile" onclick="openModal('kvm')">
+                <h3>Portable KVM</h3>
+                <p>Server Maintenance</p>
             </div>
 
-            <!-- PROJECT 2: DIY DVR -->
-            <div class="mb-4">
-                <h2>Custom DVR for Streaming</h2>
-                <p><strong>Goal:</strong> Building a personal DVR to capture and archive streaming content.</p>
-                <p>
-                    Designed and consolidated a custom Digital Video Recorder (DVR) system capable of capturing specific
-                    streaming feeds for archival purposes. The system automates recording schedules and manages storage
-                    efficiency, providing a private library of content independent of platform availability.
-                </p>
-                <div
-                    style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
-                    [Image Placeholder: DVR System Architecture]
+            <!-- Project 2: DVR -->
+            <div class="hex-tile" onclick="openModal('dvr')">
+                <h3>Custom DVR</h3>
+                <p>Media Archival</p>
+            </div>
+
+            <!-- Decorative / Coming Soon Tiles -->
+            <div class="hex-tile" style="background-color: var(--gray-100); cursor: default;">
+                <h3 style="color: var(--gray-300);">Future Build</h3>
+            </div>
+            <div class="hex-tile" style="background-color: var(--gray-100); cursor: default;">
+                <h3 style="color: var(--gray-300);">In Progress</h3>
+            </div>
+            <div class="hex-tile" style="background-color: var(--gray-100); cursor: default;">
+                <h3 style="color: var(--gray-300);">Idea Lab</h3>
+            </div>
+        </div>
+
+        <!-- MODAL POPUP -->
+        <div id="project-modal" class="modal-overlay">
+            <div class="modal-content">
+                <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+                <div id="modal-body-content">
+                    <!-- Dynamic Content -->
                 </div>
             </div>
-        </section>
+        </div>
 
     </main>
 
@@ -62,6 +66,80 @@
     <footer></footer>
 
     <script src="js/main.js"></script>
+    <script>
+        // Workshop Data
+        const WORKSHOP_DATA = {
+            "kvm": {
+                title: "Portable KVM Access",
+                content: `
+                    <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
+                    <p>I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless servers and workstations directly using a single lightweight device. This setup eliminates the bulk of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.</p>
+                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
+                        [Image Placeholder: KVM Device Setup]
+                    </div>
+                    <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
+                    <p>I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless servers and workstations directly using a single lightweight device. This setup eliminates the bulk of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.</p>
+                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
+                        [Image Placeholder: KVM Device Setup]
+                    </div>
+                    <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
+                    <p>I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless servers and workstations directly using a single lightweight device. This setup eliminates the bulk of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.</p>
+                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
+                        [Image Placeholder: KVM Device Setup]
+                    </div>
+                    <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
+                    <p>I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless servers and workstations directly using a single lightweight device. This setup eliminates the bulk of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.</p>
+                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
+                        [Image Placeholder: KVM Device Setup]
+                    </div>
+                `
+            },
+            "dvr": {
+                title: "Custom DVR for Streaming",
+                content: `
+                    <p><strong>Goal:</strong> Building a personal DVR to capture and archive streaming content.</p>
+                    <p>Designed and consolidated a custom Digital Video Recorder (DVR) system capable of capturing specific streaming feeds for archival purposes. The system automates recording schedules and manages storage efficiency, providing a private library of content independent of platform availability.</p>
+                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
+                        [Image Placeholder: DVR System Architecture]
+                    </div>
+                `
+            }
+        };
+
+        const modal = document.getElementById('project-modal');
+        const modalContent = document.getElementById('modal-body-content');
+
+        function openModal(projectId) {
+            const project = WORKSHOP_DATA[projectId];
+            if (project) {
+                modalContent.innerHTML = `
+                    <h2 style="margin-top: 0;">${project.title}</h2>
+                    ${project.content}
+                `;
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when clicking outside content
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 
 </html>

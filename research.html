@@ -160,38 +160,38 @@
                         <h2 class="mb-2">${project.title}</h2>
                         
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Overview</h4>
+                            <h4 style="text-transform:uppercase; font-size:1.1rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Overview</h4>
                             <p style="text-align: justify;">${project.overview}</p>
                             ${renderImage(project.overviewImage, 'Overview', project.overviewCaption)}
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Problem Statement</h4>
+                            <h4 style="text-transform:uppercase; font-size:1.1rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Problem Statement</h4>
                             <p style="text-align: justify;">${project.problem}</p>
                             ${renderImage(project.problemImage, 'Problem Statement', project.problemCaption)}
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Methodology</h4>
+                            <h4 style="text-transform:uppercase; font-size:1.1rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Methodology</h4>
                             <p style="text-align: justify;">${project.methodology}</p>
                             ${renderImage(project.methodologyImage, 'Methodology', project.methodologyCaption)}
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Key Innovation</h4>
+                            <h4 style="text-transform:uppercase; font-size:1.1rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Key Innovation</h4>
                             <p style="text-align: justify;">${project.novelty}</p>
                             ${renderImage(project.innovationImage, 'Key Innovation', project.innovationCaption)}
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Results</h4>
+                            <h4 style="text-transform:uppercase; font-size:1.1rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Results</h4>
                             <p style="text-align: justify;">${project.results}</p>
                             ${renderImage(project.resultsImage, 'Results', project.resultsCaption)}
                         </div>
 
                         <div class="mt-4 flex" style="gap:20px;">
-                            <a href="${project.paperLink}" class="btn-text">Read Paper</a>
-                            <a href="${project.githubLink}" class="btn-text">View Code</a>
+                            <a href="${project.paperLink}" class="btn-text" target="_blank">Read Paper</a>
+                            <a href="${project.githubLink}" class="btn-text" target="_blank">View Code</a>
                         </div>
                     `;
 
