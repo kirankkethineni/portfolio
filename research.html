@@ -92,35 +92,37 @@
         <section class="research-layout mb-4">
             <!-- LEFT COLUMN: LIST -->
             <div class="research-list">
-                <div class="research-item" onclick="loadProject('chroma-sense', this)">
-                    <h3>Chroma-Sense</h3>
-                    <span class="load-btn">Load Details →</span>
-                </div>
-                <div class="research-item" onclick="loadProject('weedout', this)">
-                    <h3>WeedOut</h3>
-                    <span class="load-btn">Load Details →</span>
-                </div>
-                <div class="research-item" onclick="loadProject('spraycraft', this)">
-                    <h3>SprayCraft</h3>
-                    <span class="load-btn">Load Details →</span>
-                </div>
-                <div class="research-item" onclick="loadProject('semantic-search', this)">
-                    <h3>Semantic-Search</h3>
-                    <span class="load-btn">Load Details →</span>
+                <div class="research-item" onclick="loadProject('xpress-weed', this)">
+                    <h3>XpressWeed</h3>
+                    <p style="font-size: 0.8rem; color: var(--gray-500); margin: 0.2rem 0 0.5rem;">IEEE SusTech 2026</p>
                 </div>
                 <div class="research-item" onclick="loadProject('soil', this)">
                     <h3>SOIL</h3>
-                    <span class="load-btn">Load Details →</span>
+                    <p style="font-size: 0.8rem; color: var(--gray-500); margin: 0.2rem 0 0.5rem;">IEEE OCIT 2025</p>
                 </div>
-                <div class="research-item" onclick="loadProject('xpress-weed', this)">
-                    <h3>XpressWeed</h3>
-                    <span class="load-btn">Load Details →</span>
+                <div class="research-item" onclick="loadProject('semantic-search', this)">
+                    <h3>Semantic-Search</h3>
+                    <p style="font-size: 0.8rem; color: var(--gray-500); margin: 0.2rem 0 0.5rem;">IEEE TAFE 2025</p>
+                </div>
+                <div class="research-item" onclick="loadProject('chroma-sense', this)">
+                    <h3>Chroma-Sense</h3>
+                    <p style="font-size: 0.8rem; color: var(--gray-500); margin: 0.2rem 0 0.5rem;">IEEE CAI 2025</p>
+                </div>
+                <div class="research-item" onclick="loadProject('spraycraft', this)">
+                    <h3>SprayCraft</h3>
+                    <p style="font-size: 0.8rem; color: var(--gray-500); margin: 0.2rem 0 0.5rem;">arXiv 2024</p>
+                </div>
+                <div class="research-item" onclick="loadProject('weedout', this)">
+                    <h3>WeedOut</h3>
+                    <p style="font-size: 0.8rem; color: var(--gray-500); margin: 0.2rem 0 0.5rem;">IFIP IoT 2023</p>
                 </div>
             </div>
 
             <!-- RIGHT COLUMN: DISPLAY -->
-            <div id="project-display" class="research-display">
-                <p style="color: var(--gray-400); font-style: italic;">Select a project to view details.</p>
+            <div id="project-display" class="research-display" style="text-align: center; color: var(--gray-400);">
+                <img src="images/research_placeholder.jpg" alt="Research Theme"
+                    style="width: 400px; height: 400px; margin-bottom: 2rem; opacity: 0.8;">
+                <p style="font-style: italic; font-size: 1.1rem;">Select a project to explore the details.</p>
             </div>
         </section>
     </main>
@@ -143,36 +145,48 @@
                 display.style.opacity = 0;
 
                 setTimeout(() => {
+                    const renderImage = (src, alt, caption) => {
+                        if (!src) return '';
+                        const captionHtml = caption ? `<p style="font-size: 0.8rem; color: var(--gray-500); text-align: center; margin-top: 0.5rem; font-style: italic;">${caption}</p>` : '';
+                        return `
+                            <div style="margin-top:1rem;">
+                                <img src="${src}" alt="${alt}" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; border:1px solid var(--border-light); padding: 1rem;">
+                                ${captionHtml}
+                            </div>
+                        `;
+                    };
+
                     display.innerHTML = `
                         <h2 class="mb-2">${project.title}</h2>
                         
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Overview</h4>
-                            <p>${project.overview}</p>
-                            <img src="${project.overviewImage}" alt="Overview" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; margin-top:1rem; border:1px solid var(--border-light); padding: 1rem;">
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Overview</h4>
+                            <p style="text-align: justify;">${project.overview}</p>
+                            ${renderImage(project.overviewImage, 'Overview', project.overviewCaption)}
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Problem Statement</h4>
-                            <p>${project.problem}</p>
-                            <img src="${project.problemImage}" alt="Problem Statement" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; margin-top:1rem; border:1px solid var(--border-light); padding: 1rem;">
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Problem Statement</h4>
+                            <p style="text-align: justify;">${project.problem}</p>
+                            ${renderImage(project.problemImage, 'Problem Statement', project.problemCaption)}
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Methodology</h4>
-                            <p>${project.methodology}</p>
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Methodology</h4>
+                            <p style="text-align: justify;">${project.methodology}</p>
+                            ${renderImage(project.methodologyImage, 'Methodology', project.methodologyCaption)}
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Key Innovation</h4>
-                            <p>${project.novelty}</p>
-                            <img src="${project.innovationImage}" alt="Key Innovation" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; margin-top:1rem; border:1px solid var(--border-light); padding: 1rem;">
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Key Innovation</h4>
+                            <p style="text-align: justify;">${project.novelty}</p>
+                            ${renderImage(project.innovationImage, 'Key Innovation', project.innovationCaption)}
                         </div>
 
                         <div class="mb-4">
-                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem;">Results</h4>
-                            <p>${project.results}</p>
-                            <img src="${project.resultsImage}" alt="Results" style="width:100%; height:auto; max-height:400px; object-fit:contain; background:#f8f9fa; border-radius:8px; margin-top:1rem; border:1px solid var(--border-light); padding: 1rem;">
+                            <h4 style="text-transform:uppercase; font-size:0.75rem; color:var(--gray-500); margin-bottom:0.25rem; text-align: left;">Results</h4>
+                            <p style="text-align: justify;">${project.results}</p>
+                            ${renderImage(project.resultsImage, 'Results', project.resultsCaption)}
                         </div>
 
                         <div class="mt-4 flex" style="gap:20px;">
