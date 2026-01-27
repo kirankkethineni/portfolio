@@ -33,6 +33,9 @@ body {
   line-height: 1.6;
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 a {
@@ -55,6 +58,13 @@ ul {
   margin: 0 auto;
   padding: 0 40px;
   /* Slight increase in padding for wider layout */
+}
+
+/* Main content expands to push footer down */
+main.container {
+  flex: 1;
+  width: 100%;
+  /* Ensure it spans width */
 }
 
 .flex {
@@ -155,7 +165,8 @@ footer {
   background-color: var(--gray-900);
   color: var(--gray-400);
   padding: 3rem 0;
-  margin-top: 4rem;
+  margin-top: auto;
+  /* Pushes to bottom if flex container has space */
   font-size: 0.9rem;
 }
 
@@ -270,12 +281,36 @@ p {
 }
 
 /* TIMELINE COMPONENT */
+/* TIMELINE COMPONENT */
+.timeline-scroll-wrapper {
+  max-height: 600px;
+  overflow-y: auto;
+  position: relative;
+  /* Scrollbar Styling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-400) var(--gray-100);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  padding: 2rem 0;
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+.timeline-scroll-wrapper::-webkit-scrollbar-thumb {
+  background-color: var(--gray-400);
+  border-radius: 10px;
+}
+
 .timeline-section {
   position: relative;
   max-width: 100%;
-  margin: 4rem 0;
-  /* Align left with container padding or keep auto if centered? Container has padding. */
-  /* Let's keep margin: 4rem auto but 100% width fills container */
+  margin: 0;
   padding-left: 140px;
   /* Space for year label */
 }
@@ -480,3 +515,168 @@ p {
 .modal-close-btn:hover {
   color: var(--black);
 }
+
+/* EXPLORATION PAGE STYLES */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+.sketch-font {
+  font-family: 'Patrick Hand', cursive;
+}
+
+.view-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 450px);
+  min-height: 400px;
+  /* Fixed height container for the "app" feel */
+  overflow: hidden;
+  border: 2px solid var(--black);
+  border-radius: 4px;
+  /* Rough corner could use SVG border image later */
+  background: var(--white);
+  margin-top: 2rem;
+}
+
+/* Make views transparent so they inherit container background or texture */
+.view-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  /* Slight opacity to see texture if applied to container, or just white */
+  transition: transform 0.5s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+/* Match buttons: Black circle with white text for topics */
+.topic-marker {
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--white);
+  border-radius: 50%;
+  background: var(--black);
+  color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  font-family: 'Patrick Hand', cursive;
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 5px;
+}
+
+.topic-marker:hover {
+  transform: scale(1.1);
+  box-shadow: 2px 2px 0px var(--gray-500);
+}
+
+/* Slide Logic */
+.view-section.active {
+  transform: translateX(0);
+  z-index: 10;
+}
+
+.view-section.next {
+  transform: translateX(100%);
+  z-index: 20;
+}
+
+.view-section.prev {
+  transform: translateX(-100%);
+  z-index: 5;
+}
+
+/* Specific view overrides */
+#view-map {
+  overflow: hidden;
+}
+
+/* Sketch Components */
+.sketch-btn {
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  border: 2px solid var(--white);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  /* Sketchy border radius */
+  background: var(--black);
+  color: var(--white);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin: 1rem;
+}
+
+.sketch-btn:hover {
+  transform: rotate(-2deg) scale(1.05);
+  box-shadow: 2px 2px 0px var(--gray-500);
+  z-index: 100;
+  /* Bring to front on hover */
+}
+
+/* Tooltip */
+.sketch-btn::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  background: var(--white);
+  color: var(--black);
+  border: 1px solid var(--black);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  font-family: 'Patrick Hand', cursive;
+  z-index: 101;
+}
+
+.sketch-btn:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+.back-arrow {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 100;
+  font-family: 'Patrick Hand', cursive;
+  display: none;
+  /* Hidden on root map */
+}
+
+/* Map specific */
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  height: 100%;
+  align-content: center;
+  justify-items: center;
+}
+
+.landscape-canvas {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px dashed var(--gray-300);
+  margin-top: 2rem;
+  position: relative;
+}
+
+/* Old topic-marker removed, handled above */

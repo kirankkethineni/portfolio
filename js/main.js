@@ -33,7 +33,7 @@ function injectGlobalComponents() {
                 <li><a href="index.html">Home</a></li>
                 <li><a href="research.html">Research</a></li>
                 <li><a href="workshop.html">The Workshop</a></li>
-                <li><a href="explorations.html">Explorations</a></li>
+                <li><a href="exploration.html">Exploration</a></li>
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>

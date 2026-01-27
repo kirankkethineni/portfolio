@@ -4,253 +4,441 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | My Name</title>
+    <title>Blog | Kiran K. Kethineni</title>
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Patrick+Hand&display=swap"
+        rel="stylesheet">
     <style>
-        .blog-layout {
+        /* Page Specific Styles */
+        .blog-wrapper {
             display: flex;
-            gap: 4rem;
-        }
-
-        .category-sidebar {
-            width: 200px;
-            flex-shrink: 0;
-            border-right: 1px solid var(--border-light);
-            padding-right: 1rem;
-        }
-
-        .category-item {
-            padding: 0.5rem 0;
-            color: var(--gray-500);
-            cursor: pointer;
-            transition: color 0.3s;
-            display: block;
-        }
-
-        .category-item:hover,
-        .category-item.active {
-            color: var(--black);
-            font-weight: 600;
-        }
-
-        .blog-timeline {
-            flex-grow: 1;
-            border-left: 1px solid var(--border-light);
-            /* Timeline line */
-            padding-left: 2rem;
+            height: calc(100vh - 450px);
+            min-height: 500px;
+            /* Adjust based on header/footer */
+            overflow: hidden;
             position: relative;
-            margin-left: -1px;
-            /* Align with sidebar border if needed, or keeping distinct */
+            margin-top: 2rem;
+            border: 2px solid var(--black);
+            background: var(--white);
         }
 
-        /* Better timeline look */
-        .blog-timeline {
-            border-left: 2px solid var(--gray-300);
-        }
-
-        .post-item {
-            margin-bottom: 3rem;
+        /* Left Control Panel */
+        .controls-panel {
+            width: 300px;
+            background: var(--white);
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            overflow: visible;
+            /* CRITICAL: Must be visible for arrows */
+            z-index: 20;
+            /* Ensure on top */
         }
 
-        .post-item::before {
+        /* The Rotary Knob Container */
+        .knob-wrapper {
+            position: relative;
+            width: 250px;
+            height: 500px;
+            /* Tall enough for the half-circle */
+            display: flex;
+            align-items: center;
+            left: -50px;
+            /* Pull left */
+        }
+
+        /* The Rotating Element */
+        /* The Rotary Knob (Half Circle on Left Edge) */
+        /* The Rotary Knob (Half Circle on Left Edge) */
+        .rotary-knob {
+            width: 400px;
+            height: 400px;
+            background:
+                /* Inner smooth surface (Masks the center) */
+                radial-gradient(circle at 50% 50%, var(--gray-900) 0%, var(--gray-900) 55%, transparent 56%),
+                /* Subtle metallic ridge pattern (Visible on edges) */
+                repeating-conic-gradient(from 0deg,
+                    var(--gray-800) 0deg 2deg,
+                    var(--black) 2deg 4deg);
+            border-radius: 50%;
+            position: absolute;
+            left: -200px;
+            transition: transform 0.8s cubic-bezier(0.1, 0, 0.3, 1);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            color: var(--white);
+            /* 3D Hardware Shadow */
+            box-shadow:
+                inset -5px 0 10px rgba(255, 255, 255, 0.1),
+                inset 5px 0 10px rgba(0, 0, 0, 0.5),
+                10px 0 30px rgba(0, 0, 0, 0.4);
+            border: 4px solid var(--gray-800);
+        }
+
+        /* Central Cap (Optional aesthetic detail, kept for depth) */
+        .rotary-knob::before {
             content: '';
             position: absolute;
-            left: -2.35rem;
-            /* Adjust based on padding/border */
-            top: 0.5rem;
-            width: 10px;
-            height: 10px;
-            background: var(--bg-body);
-            border: 2px solid var(--gray-500);
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle at 30% 30%, var(--gray-800), var(--black));
             border-radius: 50%;
+            box-shadow:
+                inset 2px 2px 5px rgba(255, 255, 255, 0.1),
+                0 0 10px rgba(0, 0, 0, 0.8);
+            z-index: 2;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
-        .post-date {
-            font-size: 0.8rem;
-            color: var(--gray-400);
-            margin-bottom: 0.2rem;
-            font-family: monospace;
+        /* Static Arrows Layer */
+        .knob-controls {
+            position: absolute;
+            left: 60px;
+            /* Moved inside for better visibility */
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 120px;
+            /* More space */
+            z-index: 10;
+            pointer-events: none;
         }
 
-        .post-title {
-            font-size: 1.4rem;
-            font-weight: 600;
+        .control-arrow {
+            width: 100px;
+            /* Much larger */
+            height: 100px;
+            color: var(--white);
+            /* Clearly visible */
+            cursor: pointer;
+            pointer-events: auto;
+            transition: transform 0.2s, opacity 0.2s, color 0.2s;
+            filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.8));
+            /* Strong shadow for contrast */
+        }
+
+        .control-arrow:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Align with curve and maintain on hover */
+        .arrow-up {
+            transform: rotate(-15deg);
+        }
+
+        .arrow-up:hover {
+            transform: rotate(-15deg) scale(1.1);
+        }
+
+        .arrow-down {
+            transform: rotate(15deg);
+        }
+
+        .arrow-down:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        /* Right Content Area */
+        .blog-carousel {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            background-color: var(--white);
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .blog-card {
+            width: 90%;
+            /* Wider for landscape */
+            max-width: 800px;
+            height: 60%;
+            /* Shorter heigth */
+            background: var(--white);
+            border: 2px solid var(--black);
+            padding: 3rem;
+            position: absolute;
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            opacity: 0;
+            transform: translateX(100px) rotateY(-10deg);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 15px 15px 0px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ... existing active/prev/next/typography ... */
+        .blog-card.active {
+            opacity: 1;
+            transform: translateX(0) rotateY(0);
+            z-index: 10;
+        }
+
+        .blog-card.prev {
+            opacity: 0;
+            transform: translateY(-100%) rotate(-10deg);
+            z-index: 5;
+        }
+
+        .blog-card.next {
+            opacity: 0;
+            transform: translateY(100%) rotate(10deg);
+            z-index: 5;
+        }
+
+        .blog-date {
+            font-family: 'Patrick Hand', cursive;
+            color: var(--gray-500);
+            font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            color: var(--black);
         }
 
-        /* Accordion-like expansion within post */
-        .post-excerpt {
-            margin-bottom: 1rem;
+        .blog-title {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
 
-        .post-full {
-            display: none;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px dashed var(--gray-300);
+        .blog-excerpt {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: var(--gray-700);
+            margin-bottom: 2rem;
+            flex: 1;
         }
 
-        .post-full.show {
-            display: block;
-            animation: fadeIn 0.4s ease;
+        .read-more-btn {
+            align-self: flex-start;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--black);
+            background: var(--white);
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(5px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .read-more-btn:hover {
+            background: var(--black);
+            color: var(--white);
         }
 
-        @media (max-width: 768px) {
-            .blog-layout {
+        /* Mobile responsive */
+        @media(max-width: 768px) {
+            .blog-wrapper {
                 flex-direction: column;
+                height: auto;
+                min-height: 90vh;
             }
 
-            .category-sidebar {
+            .controls-panel {
                 width: 100%;
-                border-right: none;
-                border-bottom: 1px solid var(--border-light);
-                padding-bottom: 1rem;
-                margin-bottom: 2rem;
-                display: flex;
-                gap: 20px;
-                overflow-x: auto;
+                height: 150px;
+                border-bottom: none;
+                justify-content: center;
+                overflow: hidden;
             }
 
-            .blog-timeline {
-                border-left: none;
-                /* simple stack on mobile */
-                padding-left: 0;
+            .knob-wrapper {
+                width: 100%;
+                height: 100%;
+                left: 0;
+                justify-content: center;
+                align-items: flex-end;
+                /* Knob at bottom */
             }
 
-            .post-item::before {
-                display: none;
+            .rotary-knob {
+                width: 300px;
+                height: 300px;
+                left: auto;
+                bottom: -150px;
+                /* Peak out top half */
+                position: relative;
+            }
+
+            .knob-controls {
+                flex-direction: row;
+                gap: 150px;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- HEADER injected by main.js -->
     <header></header>
+
+    <!-- NAVIGATION injected by main.js -->
     <nav class="main-nav"></nav>
+
     <main class="container">
-        <section class="mt-4 mb-4">
-            <h1>Blog</h1>
-            <p>Thoughts in progress. Filtering by stream of consciousness.</p>
-        </section>
 
-        <section class="blog-layout">
-            <!-- SIDEBAR -->
-            <div class="category-sidebar">
-                <span class="category-item active" onclick="filterPosts('all', this)">All Posts</span>
-                <span class="category-item" onclick="filterPosts('tech', this)">Tech</span>
-                <span class="category-item" onclick="filterPosts('psychology', this)">Psychology</span>
-                <span class="category-item" onclick="filterPosts('spirituality', this)">Spirituality</span>
+        <div class="blog-wrapper">
+            <!-- Left Controls -->
+            <div class="controls-panel">
+                <div class="knob-wrapper">
+                    <!-- Spinning Knob -->
+                    <div class="rotary-knob" id="knob">
+                        <!-- Tiny texture dots to show rotation -->
+                        <div
+                            style="position: absolute; right: 20px; width: 10px; height: 10px; background: rgba(255,255,255,0.2); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="position: absolute; right: 40px; top: 100px; width: 6px; height: 6px; background: rgba(255,255,255,0.2); border-radius: 50%;">
+                        </div>
+                        <div
+                            style="position: absolute; right: 40px; bottom: 100px; width: 6px; height: 6px; background: rgba(255,255,255,0.2); border-radius: 50%;">
+                        </div>
+                    </div>
+
+                    <!-- Static Controls Overlay -->
+                    <div class="knob-controls">
+                        <!-- UP / Counter-Clockwise Arrow -->
+                        <div class="control-arrow arrow-up" onclick="rotateKnob(-1)" title="Previous">
+                            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Large arc mimicking the knob rim (Bulge Right) -->
+                                <path d="M 40 80 A 60 60 0 0 0 40 20" />
+                                <path d="M 25 35 L 40 20 L 55 35" />
+                            </svg>
+                        </div>
+
+                        <!-- DOWN / Clockwise Arrow -->
+                        <div class="control-arrow arrow-down" onclick="rotateKnob(1)" title="Next">
+                            <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Large arc mimicking the knob rim (Bulge Right) -->
+                                <path d="M 40 20 A 60 60 0 0 1 40 80" />
+                                <path d="M 25 65 L 40 80 L 55 65" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- TIMELINE -->
-            <div class="blog-timeline">
-
-                <article class="post-item" data-category="tech">
-                    <div class="post-date">2025-12-15</div>
-                    <h2 class="post-title">The Death of the File System?</h2>
-                    <div class="post-excerpt">
-                        <p>With vector databases and semantic search, do we really need folders anymore? Exploring the
-                            idea of an organic, associative OS.</p>
-                    </div>
-                    <button class="btn-text" onclick="togglePost(this)">Read More</button>
-                    <div class="post-full">
-                        <p>Traditional file systems force a hierarchy that doesn't match human memory. We remember by
-                            association, not path. I've been experimenting with a local-first system that tags
-                            everything automatically...</p>
-                        <p class="mt-2">[Full article text placeholder]</p>
-                    </div>
-                </article>
-
-                <article class="post-item" data-category="spirituality">
-                    <div class="post-date">2025-11-02</div>
-                    <h2 class="post-title">Silence as Infrastructure</h2>
-                    <div class="post-excerpt">
-                        <p>Why modern cities design against silence, and how we can reclaim auditory headspace.</p>
-                    </div>
-                    <button class="btn-text" onclick="togglePost(this)">Read More</button>
-                    <div class="post-full">
-                        <p>Cities are designed for throughput, not pause. But silence is infrastructure for the mind.
-                            Without it, processing capacity degrades...</p>
-                    </div>
-                </article>
-
-                <article class="post-item" data-category="psychology">
-                    <div class="post-date">2025-09-21</div>
-                    <h2 class="post-title">Cognitive Load in Code Reviews</h2>
-                    <div class="post-excerpt">
-                        <p>Applying 'Miller's Law' to pull request sizes. Why 7 +/- 2 files is the limit for effective
-                            review.</p>
-                    </div>
-                    <button class="btn-text" onclick="togglePost(this)">Read More</button>
-                    <div class="post-full">
-                        <p>We often treat code review as specific bug hunting, but it's a social process of context
-                            sharing. When the context exceeds working memory...</p>
-                    </div>
-                </article>
-
-                <article class="post-item" data-category="tech">
-                    <div class="post-date">2025-08-10</div>
-                    <h2 class="post-title">CSS Variables are undervalued</h2>
-                    <div class="post-excerpt">
-                        <p>Moving beyond pre-processors. Native CSS variables allow for runtime theming without the
-                            build step overhead.</p>
-                    </div>
-                    <button class="btn-text" onclick="togglePost(this)">Read More</button>
-                    <div class="post-full">
-                        <p>Why I stripped SASS out of my workflow and went back to vanilla...</p>
-                    </div>
-                </article>
-
+            <!-- Right Content -->
+            <div class="blog-carousel" id="carousel-container">
+                <!-- Cards injected via JS -->
             </div>
-        </section>
+        </div>
+
     </main>
+
+    <!-- FOOTER injected by main.js -->
     <footer></footer>
+
     <script src="js/main.js"></script>
     <script>
-        function filterPosts(category, btn) {
-            // Update active state
-            document.querySelectorAll('.category-item').forEach(c => c.classList.remove('active'));
-            btn.classList.add('active');
+        // Sample Blog Data
+        const BLOG_POSTS = [
+            {
+                id: 1,
+                date: 'Jan 24, 2026',
+                title: 'The Unreasonable Effectiveness of Simple Models',
+                excerpt: 'Why do linear regressions often outperform complex neural networks in production? A look at the trade-off between variance and bias in real-world systems...'
+            },
+            {
+                id: 2,
+                date: 'Dec 10, 2025',
+                title: 'Debugging Hardware in a Software World',
+                excerpt: 'Lessons learned from applying software CI/CD practices to FPGA development workflows. It turns out, hardware loops are just really slow unit tests...'
+            },
+            {
+                id: 3,
+                date: 'Nov 05, 2025',
+                title: 'Digital Minimalism for Engineers',
+                excerpt: 'How reducing tool friction increases cognitive throughput. My experiment with moving everything to the terminal and ditching the GUI...'
+            },
+            {
+                id: 4,
+                date: 'Oct 15, 2025',
+                title: 'The Aesthetics of Code',
+                excerpt: 'Does beautiful code actually run better? Probably not. Is it easier to debug? 100%. Exploring the psychology of code formatting...'
+            }
+        ];
 
-            // Filter
-            const posts = document.querySelectorAll('.post-item');
-            posts.forEach(post => {
-                const postCat = post.getAttribute('data-category');
-                if (category === 'all' || postCat === category) {
-                    post.style.display = 'block';
-                } else {
-                    post.style.display = 'none';
-                }
+        let currentIndex = 0;
+        let currentRotation = 0;
+        const knob = document.getElementById('knob');
+        const container = document.getElementById('carousel-container');
+
+        // Init
+        function init() {
+            renderCards();
+            updateState();
+        }
+
+        function renderCards() {
+            container.innerHTML = '';
+            BLOG_POSTS.forEach((post, index) => {
+                const card = document.createElement('div');
+                card.className = `blog-card ${index === currentIndex ? 'active' : ''}`;
+                card.id = `card-${index}`;
+
+                card.innerHTML = `
+                    <div class="blog-date">${post.date}</div>
+                    <div class="blog-title">${post.title}</div>
+                    <div class="blog-excerpt">${post.excerpt}</div>
+                    <button class="read-more-btn">Read Entry</button>
+                `;
+
+                container.appendChild(card);
             });
         }
 
-        function togglePost(btn) {
-            const content = btn.nextElementSibling;
-            const isVisible = content.classList.contains('show');
+        function rotateKnob(direction) {
+            // Direction: 1 (down/next), -1 (up/prev)
 
-            if (isVisible) {
-                content.classList.remove('show');
-                btn.textContent = 'Read More';
-            } else {
-                content.classList.add('show');
-                btn.textContent = 'Read Less';
-            }
+            // Check bounds
+            if (direction === 1 && currentIndex >= BLOG_POSTS.length - 1) return; // End of list
+            if (direction === -1 && currentIndex <= 0) return; // Start of list
+
+            currentIndex += direction;
+            currentRotation += (direction * 45); // Rotate 45 deg per step
+
+            updateState();
         }
+
+        function updateState() {
+            // Rotate Knob
+            knob.style.transform = `rotate(${currentRotation}deg)`;
+
+            // Update Cards
+            const cards = document.querySelectorAll('.blog-card');
+            cards.forEach((card, index) => {
+                card.className = 'blog-card'; // Reset
+                if (index === currentIndex) {
+                    card.classList.add('active');
+                } else if (index < currentIndex) {
+                    card.classList.add('prev'); // Gone up
+                } else {
+                    card.classList.add('next'); // Waiting down
+                }
+            });
+
+            // Update Arrows Visual State (Disable if at ends)
+            document.querySelector('.arrow-up').style.opacity = currentIndex === 0 ? '0.3' : '1';
+            document.querySelector('.arrow-up').style.pointerEvents = currentIndex === 0 ? 'none' : 'auto';
+
+            document.querySelector('.arrow-down').style.opacity = currentIndex === BLOG_POSTS.length - 1 ? '0.3' : '1';
+            document.querySelector('.arrow-down').style.pointerEvents = currentIndex === BLOG_POSTS.length - 1 ? 'none' : 'auto';
+        }
+
+        window.onload = init;
+
     </script>
 </body>
 
