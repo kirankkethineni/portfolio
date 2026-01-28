@@ -79,11 +79,13 @@
         // State Management
         let currentLevel = 0; // 0: Map, 1: Landscape, 2: Content
         let historyStack = [];
+        let currentTopicKey = null; // Track current topic for background persistence
 
         // Data Store
         const DATA = {
             'sound': {
                 title: 'Sound & Cinema',
+                bgImage: 'images/sketch_sound_cinema.png',
                 topics: [
                     { id: 'ost', label: 'OSTs', content: 'Exploring the emotional impact of Original Soundtracks in cinema...' },
                     { id: 'sound-design', label: 'Foley', content: 'The art of sound design and foley work...' }
@@ -91,6 +93,7 @@
             },
             'psychology': {
                 title: 'Psychology',
+                bgImage: 'images/sketch_psychology.png',
                 topics: [
                     { id: 'cog', label: 'Cognitive', content: 'Understanding how we think and process information...' },
                     { id: 'behav', label: 'Behavioral', content: 'Analyzing patterns in human behavior...' }
@@ -98,6 +101,7 @@
             },
             'spirituality': {
                 title: 'Spirituality',
+                bgImage: 'images/sketch_spirituality.png',
                 topics: [
                     { id: 'phil', label: 'Philosophy', content: 'Eastern philosophy and its modern relevance...' },
                     { id: 'med', label: 'Mindfulness', content: 'The practice of presence in a chaotic world...' }
@@ -105,6 +109,7 @@
             },
             'cars': {
                 title: 'Cars',
+                bgImage: 'images/sketch_cars.png',
                 topics: [
                     { id: 'eng', label: 'Engines', content: 'The mechanics of internal combustion and EV powertrains...' },
                     { id: 'des', label: 'Design', content: 'Automotive design languages through the decades...' }
@@ -112,6 +117,7 @@
             },
             'photography': {
                 title: 'Photography',
+                bgImage: 'images/sketch_photography.png',
                 topics: [
                     { id: 'bw', label: 'B&W', content: 'The timeless nature of black and white photography...' },
                     { id: 'street', label: 'Street', content: 'Capturing candid moments in urban environments...' }
@@ -169,11 +175,24 @@
 
         // Navigation Actions
         function goToLandscape(key) {
+            currentTopicKey = key;
             const data = DATA[key];
             if (!data) return;
 
             document.getElementById('landscape-title').innerText = data.title;
             const container = document.getElementById('landscape-canvas');
+            const viewSection = document.getElementById('view-landscape');
+
+            // Set Background Image with stylistic filter
+            if (data.bgImage) {
+                viewSection.style.backgroundImage = `url('${data.bgImage}')`;
+                viewSection.style.backgroundSize = 'cover';
+                viewSection.style.backgroundPosition = 'center';
+                viewSection.style.backgroundBlendMode = 'multiply';
+            } else {
+                viewSection.style.backgroundImage = 'none';
+            }
+
             container.innerHTML = ''; // Clear
 
             // Render Topics
@@ -193,6 +212,17 @@
         function goToContent(title, text) {
             document.getElementById('content-title').innerText = title;
             document.getElementById('content-body').innerText = text;
+
+            // Persist Background
+            const viewContent = document.getElementById('view-content');
+            if (currentTopicKey && DATA[currentTopicKey].bgImage) {
+                viewContent.style.backgroundImage = `url('${DATA[currentTopicKey].bgImage}')`;
+                viewContent.style.backgroundSize = 'cover';
+                viewContent.style.backgroundPosition = 'center';
+                viewContent.style.backgroundBlendMode = 'multiply';
+            } else {
+                viewContent.style.backgroundImage = 'none';
+            }
 
             transitionTo(viewContent, 'forward');
             currentLevel = 2;

@@ -29,7 +29,7 @@
             <!-- Project 1: KVM -->
             <div class="hex-tile" onclick="openModal('kvm')">
                 <h3>Portable KVM</h3>
-                <p>Server Maintenance</p>
+                <p>Remote PC access</p>
             </div>
 
             <!-- Project 2: DVR -->
@@ -38,15 +38,56 @@
                 <p>Media Archival</p>
             </div>
 
-            <!-- Decorative / Coming Soon Tiles -->
-            <div class="hex-tile" style="background-color: var(--gray-100); cursor: default;">
-                <h3 style="color: var(--gray-300);">Future Build</h3>
+            <!-- Project 3: Wireless HDMI -->
+            <div class="hex-tile" onclick="openModal('wireless')">
+                <h3>Wireless HDMI</h3>
+                <p>Signal Engineering</p>
             </div>
-            <div class="hex-tile" style="background-color: var(--gray-100); cursor: default;">
-                <h3 style="color: var(--gray-300);">In Progress</h3>
+            <!-- Project 4: Remote Media Matrix -->
+            <div class="hex-tile" onclick="openModal('remote_matrix')">
+                <h3>Remote Matrix</h3>
+                <p>AV Automation</p>
             </div>
-            <div class="hex-tile" style="background-color: var(--gray-100); cursor: default;">
-                <h3 style="color: var(--gray-300);">Idea Lab</h3>
+            <!-- Project 5: Menu Automation -->
+            <div class="hex-tile" onclick="openModal('digital_signage')">
+                <h3>Digital Signage</h3>
+                <p>Menu Automation</p>
+            </div>
+
+            <!-- Project 6: Power Bill Hack -->
+            <div class="hex-tile" onclick="openModal('power_hack')">
+                <h3>Energy Hack</h3>
+                <p>Rebate Automation</p>
+            </div>
+
+            <!-- Project 7: Grading Automation -->
+            <div class="hex-tile" onclick="openModal('grading_auto')">
+                <h3>Grading Script</h3>
+                <p>Workflow Logic</p>
+            </div>
+
+            <!-- Project 8: Terraform Automation -->
+            <div class="hex-tile" onclick="openModal('terraform_auto')">
+                <h3>Terraform Auto</h3>
+                <p>Infra Pipeline</p>
+            </div>
+
+            <!-- Project 9: 3D Fabrication -->
+            <div class="hex-tile" onclick="openModal('fabrication')">
+                <h3>3D Fabrication</h3>
+                <p>Print & Engrave</p>
+            </div>
+
+            <!-- Project 10: Music Server -->
+            <div class="hex-tile" onclick="openModal('music_server')">
+                <h3>Hi-Fi Server</h3>
+                <p>Lossless Audio</p>
+            </div>
+
+            <!-- Project 11: Mayabazar -->
+            <div class="hex-tile" onclick="openModal('mayabazar')">
+                <h3>Mayabazar</h3>
+                <p>Home Automation</p>
             </div>
         </div>
 
@@ -72,36 +113,276 @@
             "kvm": {
                 title: "Portable KVM Access",
                 content: `
-                    <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
-                    <p>I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless servers and workstations directly using a single lightweight device. This setup eliminates the bulk of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.</p>
-                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
-                        [Image Placeholder: KVM Device Setup]
-                    </div>
-                    <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
-                    <p>I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless servers and workstations directly using a single lightweight device. This setup eliminates the bulk of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.</p>
-                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
-                        [Image Placeholder: KVM Device Setup]
-                    </div>
-                    <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
-                    <p>I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless servers and workstations directly using a single lightweight device. This setup eliminates the bulk of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.</p>
-                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
-                        [Image Placeholder: KVM Device Setup]
-                    </div>
-                    <p><strong>Goal:</strong> Avoiding the need to carry multiple laptops for server maintenance.</p>
-                    <p>I built a portable KVM (Keyboard, Video, Mouse) solution that allows me to interface with headless servers and workstations directly using a single lightweight device. This setup eliminates the bulk of carrying dedicated diagnostic laptops and streamlines on-site troubleshooting.</p>
-                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
-                        [Image Placeholder: KVM Device Setup]
-                    </div>
+                    <p><strong>The "Two Laptop" Problem</strong><br>
+                    While working in a hybrid setup, I found myself carrying both my office laptop (heavily restricted) and my personal laptop everywhere. I wanted to access my work machine from my personal device, but corporate policies blocked RDP and prevented installing remote access software. I realized I needed a hardware-level solution that the work laptop would see as just a monitor, mouse, and keyboard.</p>
+
+                    <p><strong>The Hardware Attempt: Dominion KX4 101</strong><br>
+                    I purchased a "Dominion KX4 101" IP KVM from Legrand. It connects to the PC via HDMI and USB, capturing the video stream and sending mouse/keyboard inputs over the network. It requires no software on the target machine. However, there was a catch: it was designed for local network use only. If I was away from home, I couldn't access it.</p>
+
+                    <p><strong>The Networking Rabbit Hole</strong><br>
+                    To access the local-only KVM from the outside world, I needed to tunnel into my home network.
+                    <ul>
+                        <li><strong>Step 1: VPN Router.</strong> I bought a new router capable of hosting a VPN server to provide a secure entry point into my home network.</li>
+                        <li><strong>Step 2: The Dynamic IP Issue.</strong> My ISP cycled my public IP address, causing the VPN connection to fail randomly when I was away.</li>
+                        <li><strong>Step 3: The "Robust" Pipeline.</strong> I bought a custom domain and configured Dynamic DNS (DDNS) on Google Domains. I set my router to automatically update the domain with its current IP.</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>Outcome</strong><br>
+                    I successfully built a "Robust Pipeline." I can now connect to my VPN from anywhere, reach my home network, and access the KVM. To my work laptop, I'm just sitting at my desk at home, typing on a physical keyboard. No software installed, no policy violations, just pure hardware signal forwarding.</p>
+
+                    
                 `
             },
             "dvr": {
                 title: "Custom DVR for Streaming",
                 content: `
-                    <p><strong>Goal:</strong> Building a personal DVR to capture and archive streaming content.</p>
-                    <p>Designed and consolidated a custom Digital Video Recorder (DVR) system capable of capturing specific streaming feeds for archival purposes. The system automates recording schedules and manages storage efficiency, providing a private library of content independent of platform availability.</p>
-                    <div style="margin-top: 1rem; background: var(--gray-100); padding: 1rem; border-radius: 4px; border: 1px dashed var(--gray-300); text-align: center; color: var(--gray-500);">
-                        [Image Placeholder: DVR System Architecture]
-                    </div>
+                    <p><strong>Subscription Fatigue</strong><br>
+                    It started with a simple frustration: I hated paying perpetual subscriptions just to watch movies I loved. Even if I paid for a month, I’d lose access the moment I stopped. When the Telugu movie <em>KA</em> came out, I wanted to own a permanent copy, not just rent stream access.</p>
+
+                    <p><strong>Attempt 1: The HDCP Wall</strong><br>
+                    I bought an Nvidia Shield Pro, knowing it had screen recording capabilities. I thought I was set. But when I hit record on a streaming app, I got nothing but a black screen. The culprit? HDCP (High-bandwidth Digital Content Protection). It blocks signal capture at the source.</p>
+
+                    <p><strong>Attempt 2: The Workflow Conflict</strong><br>
+                    I briefly considered using my IP KVM setup to route the video to my PC. It worked technically, but the viewing window had to be open and active on my desktop to record. It hogged my screen real estate, stopping me from getting any actual work done.</p>
+
+                    <p><strong>The Solution: The Hardware Chain</strong><br>
+                    I realized I needed a dedicated capture device that could run in the background.
+                    <ul>
+                        <li><strong>Capture Card:</strong> I picked up an Elgato Stream Box. Connected to the Shield, it piped the video feed into OBS Studio on my PC.</li>
+                        <li><strong>The Secret Sauce:</strong> The Elgato alone still faced the HDCP black screen. The fix was an HDCP-stripping HDMI splitter.</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The Final Setup</strong><br>
+                    <em>Nvidia Shield Pro  ➔  HDCP Stripper  ➔  Elgato Capture Card  ➔  PC (OBS Studio)</em><br><br>
+                    Now, OBS captures the reliable, unblocked stream. I can minimize the preview window and let it record entire movies in the background while I continue working on my main screen. No black screens, no monthly fees, just a personal archival library.</p>
+
+                   
+                `
+            },
+            "wireless": {
+                title: "Wireless HDMI & The 4K Handshake",
+                content: `
+                    <p><strong>The Logic (vs. The Wallet)</strong><br>
+                    I have a 4K Apple TV downstairs and wanted to watch it upstairs. The logical solution? Buy another Apple TV ($129). The engineer solution? "Why duplicate hardware? Let's just beam the signal!" I bought an Aluratek Wireless HDMI kit and an Orei 4K switch to start the experiment.</p>
+
+                    <p><strong>The Hardware Zoo</strong><br>
+                    The Orei switch gave me two bad choices:
+                    <ul>
+                        <li><strong>Standard Mode:</strong> Downscaled everything to 1080p. Good for upstairs, but my beautiful 4K downstairs TV was crippled.</li>
+                        <li><strong>TV Mode:</strong> Maintained 4K downstairs, but the upstairs signal degraded into a washed-out mess of colors.</li>
+                    </ul>
+                    I swapped it for a <strong>Rocketfish 4K switch</strong>. The picture quality improved, but it introduced a ghost in the machine.</p>
+
+                    <p><strong>The Handshake Glitch</strong><br>
+                    If the wireless kit powered on <em>before</em> the TV, the EDID handshake failed. My 4K TV would get confused and display a bizarre 1080p crop (just the top-left corner) of the 4K stream.</p>
+
+                    <p><strong>The Smart Plug Fix</strong><br>
+                    The solution wasn't better video cables—it was automation. I added smart plugs to the entire chain.
+                    <br><em>The Script:</em> Power on the TV first (establish 4K handshake) &rarr; Wait 5 seconds &rarr; Power on the Wireless Kit (sip the signal).<br>
+                    Now, I get perfect 4K downstairs and a solid stream upstairs, every time.</p>
+
+                    <p><strong>The Verdict</strong><br>
+                    <strong>Cost:</strong> Way more than just buying a second Apple TV.<br>
+                    <strong>Feeling:</strong> Tremendously satisfied. I beat the handshake.</p>
+
+                   
+                `
+            },
+            "remote_matrix": {
+                title: "Remote Control for Dumb Hardware",
+                content: `
+                    <p><strong>The Scenario</strong><br>
+                    A relative had a complex AV setup for his business: multiple TVs, an Orei HDMI Matrix, and a stack of streaming devices (Apple TV, Fire Cube). The problem? They wanted to control what was playing remotely. The Orei matrix had a local web portal for switching inputs, but it offered no way to *see* what was playing or control the playback itself remotely.</p>
+
+                    <p><strong>The Ingredients</strong><br>
+                    <ul>
+                        <li>Orei HDMI Matrix (with CEC support)</li>
+                        <li>A 10-year-old spare Windows PC</li>
+                        <li>EVGA XR1 Lite Capture Card</li>
+                        <li>Static IP / DDNS configuration</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The "Loopback" Solution</strong><br>
+                    I realized that while we couldn't upgrade the matrix, we could monitor it. I installed the old PC with multimedia tools and successfully exposed it to the web.
+                    <br><br>
+                    <strong>The Trick:</strong> I connected a vacant output port on the HDMI matrix directly into the customized PC via the capture card. This allowed the PC to "see" whatever the matrix was outputting.</p>
+
+                    <p><strong>Total Control via CEC</strong><br>
+                    Now, by remoting into the PC, we could:
+                    1. <strong>See:</strong> View the live feed of any source via the capture card window.
+                    2. <strong>Route:</strong> Use the matrix's local web portal (on the PC's browser) to send video to any room.
+                    3. <strong>Control:</strong> Leverage the matrix's HDMI-CEC capabilities to send play/pause/nav commands to the Apple TV or Fire Cube directly from the PC.</p>
+
+                    <p><strong>Outcome</strong><br>
+                    We turned a "dumb" local-only matrix into a globally accessible control center using spare parts. No expensive Control4 or Creston system needed—just a capture card and some networking know-how.</p>
+
+                `
+            },
+            "digital_signage": {
+                title: "The $30 Enterprise Menu System",
+                content: `
+                    <p><strong>The Problem</strong><br>
+                    A friend owns a restaurant with 10 TVs displaying menus. The workflow was a nightmare: pulling out flash drives, manually copying updated image files, and climbing ladders to plug them back in. Every price change was a logistical event. The alternative? Commercial digital signage systems (like NEC screens with dedicated servers) cost thousands of dollars.</p>
+
+                    <p><strong>The Experiment</strong><br>
+                    I needed a device that could display a static image as a wallpaper *without* UI clutter (no clock overlays, no "No Signal" text, no brand logos).
+                    <ul>
+                        <li><strong>Streaming Stick Audit:</strong> I tested various dongles. Most forced their own UI overlays.</li>
+                        <li><strong>The Winner:</strong> Google Chromecast (Ambient Mode).</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The "Google Photos" CMS</strong><br>
+                    I realized Chromecast's "Ambient Mode" could pull from a Google Photos album.
+                    1. <strong>Setup:</strong> Detailed the Album to contain only the Menu image.
+                    2. <strong>Clean UI:</strong> Disabled all metadata overlays (time, weather, photo data) in the Google Home app.
+                    3. <strong>Workflow:</strong> Now, my friend just updates the image in the Google Photos album from his phone. The 10 TVs sync automatically.</p>
+
+                    <p><strong>The Verdict</strong><br>
+                    <strong>Cost:</strong> 9 Chromecasts x $30 = ~$270.<br>
+                    <strong>Robustness:</strong> Zero maintenance. Turn on the TV, wait a minute, and the menu appears. We built an enterprise-grade remote management system for the price of a nice dinner.</p>
+
+                    
+                `
+            },
+            "power_hack": {
+                title: "The $100 Thermostat Script",
+                content: `
+                    <p><strong>The Loophole</strong><br>
+                    My energy provider has a peculiar rebate structure: if my monthly usage exceeds 1000kW, I get a $100 credit. I noticed my natural usage was consistently hovering around 900kW. Paradoxically, by saving energy, I was losing money. The math was simple: burning 100kW of extra power cost ~$15, but unlocked $100. Net profit: $85.</p>
+
+                    <p><strong>The Automation</strong><br>
+                    I didn't want to manually track usage or leave lights on using guesswork. I built a feedback loop script interacting with my Nest Thermostat via Matter.
+                    <ul>
+                        <li><strong>Input:</strong> Scripts scrapes/fetches projected monthly usage from my energy provider account.</li>
+                        <li><strong>Logic:</strong> If <em>(Current Day > 20)</em> AND <em>(Projected Usage < 1000kW)</em>: Calculate deficit.</li>
+                        <li><strong>Action:</strong> Force the AC to run for calculated extra cycles to bridge the gap.</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The Stack</strong><br>
+                    Custom Python script running on a local server, interfacing with the Nest API (Matter) for reliable temperature control.</p>
+
+                    <p><strong>The Outcome</strong><br>
+                    A perfectly optimized bill. The system "wastes" just enough power to trigger the discount, ensuring I never miss the rebate window by a few kilowatts. It's ridiculous, efficient, and profitable.</p>
+
+                    
+                `
+            },
+            "grading_auto": {
+                title: "The Automated Teaching Assistant",
+                content: `
+                    <p><strong>The Context</strong><br>
+                    As a Teaching Assistant for C++ coding labs, I was responsible for grading assignments and exams semester after semester. The tasks were repetitive, the criteria was standardized, but the manual effort was immense. Providing consistent, detailed feedback for dozens of students on the same implementation details was a logistical drain.</p>
+
+                    <p><strong>The Idea</strong><br>
+                    If the grading criteria are binary (logic correct/incorrect, implementation valid/invalid), why write the same comments manually? I decided to build a GUI for grading.</p>
+
+                    <p><strong>The Evaluation Engine (Excel + VBA)</strong><br>
+                    I built a custom interactive interface using Excel and VBA scripts.
+                    <ul>
+                        <li><strong>Interface:</strong> A dashboard with check-boxes for every specific grading criteria (e.g., "Memory Leak present", "Correct O(n) logic", "Variable Naming").</li>
+                        <li><strong>Logic:</strong> Checking a box triggered the script to pull pre-written, detailed feedback comments and adjust the score automatically.</li>
+                        <li><strong>Output:</strong> With one click, the script generated a personalized PDF containing the score breakdown and constructive feedback, ready for upload to the student portal.</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The Outcome</strong><br>
+                    What used to take hours of repetitive typing turned into minutes of reviewing. The system ensured fair, consistent grading and allowed me to focus on helping students understand concepts rather than correcting syntax errors manually.</p>
+
+                   
+                `
+            },
+            "terraform_auto": {
+                title: "Automating the Automation",
+                content: `
+                    <p><strong>The Bottleneck</strong><br>
+                    In a previous DevOps role, the infrastructure provisioning workflow had a manual gap. I would receive infrastructure specifications (sizes, regions, resource counts) in an Excel spreadsheet. My job was to manually translate these specs into JSON configuration files for our Terraform scripts. It was tedious, error-prone, and slow.</p>
+
+                    <p><strong>The "Meta" Automation</strong><br>
+                    I realized that I was acting as a human parser for structured data. If the input is structured (Excel) and the output is structured (JSON), code should handle the translation. I wrote a Java application to bridge this gap.</p>
+
+                    <p><strong>The Workflow</strong><br>
+                    1. <strong>Input:</strong> The standard Spec Excel sheet from the architecture team.
+                    2. <strong>Process:</strong> The Java tool parses the spreadsheet rows, maps fields to infrastructure parameters, and validates the data.
+                    3. <strong>Output:</strong> Automatically generates the <code>.tfvars</code> or JSON configuration files required by the pipeline.</p>
+
+                    <p><strong>The Impact</strong><br>
+                    This tool essentially "automated the automation." It effectively jumpstarted the provisioning pipeline. Instead of spending hours copy-pasting values and debugging typos, I could feed the Excel sheet into the tool and have the infrastructure spinning up minutes later.</p>
+
+                   
+                `
+            },
+            "fabrication": {
+                title: "The 3-in-1 Micro Factory",
+                content: `
+                    <p><strong>The Early Adopter</strong><br>
+                    I picked up my machine back in 2019, during the earlier, wilder days of consumer 3D printing. It's not just a printer—it's a 3-in-1 hybrid workstation capable of FDM 3D printing, laser engraving, and light CNC machining.</p>
+
+                    <p><strong>Use Cases</strong><br>
+                    It serves as my personal fabrication lab for both functional and fun projects.
+                    <ul>
+                        <li><strong>Printing:</strong> Prototyping toys, replacement parts, and brackets.</li>
+                        <li><strong>Laser Engraving:</strong> I use it to customize phone cases with intricate designs or burn functional WiFi QR codes onto wood and leather for guests.</li>
+                        <li><strong>CNC:</strong> Light carving for custom badge work.</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The Experience</strong><br>
+                    Ownership involves as much tinkering with the machine as it does making things with it. It’s a constant lesson in calibration, material science, and G-code. But having the ability to turn a digital file into a physical object on my desk never gets old.</p>
+
+                `
+            },
+            "music_server": {
+                title: "The Zero-Compression Audio Stream",
+                content: `
+                    <p><strong>The Pursuit of Fidelity</strong><br>
+                    I’ve built a massive library of uncompressed WAV files, focusing on the rich transients of Indian classical music and Telugu film scores. But I hit a bottleneck: Bluetooth. Streaming from my phone to my Denon AVR forced the audio through SBC/AAC compression, flattening the dynamics and muddying the details I loved.</p>
+
+                    <p><strong>The solution: DLNA & HEOS</strong><br>
+                    My Denon receiver supports HEOS, which can pull audio directly from the network. I realized I didn't need a dedicated streamer; I already had the infrastructure.
+                    <ul>
+                        <li><strong>Host:</strong> Enabled the DLNA server built into my home router.</li>
+                        <li><strong>Storage:</strong> Connected my WAV library directly to the router via USB.</li>
+                        <li><strong>Playback:</strong> The AVR pulls the raw file over the network, bypassing Bluetooth entirely.</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The Result</strong><br>
+                    Bit-perfect playback. The "ting" of the strings and the deep resonance of the vocals are now crystal clear. I’m finally hearing the music exactly as it was recorded, streamed wirelessly but without loss.</p>
+
+                   
+                `
+            },
+            "mayabazar": {
+                title: "Mayabazar: The Place of Magic",
+                content: `
+                    <p><strong>The Vision</strong><br>
+                    When I rented my first apartment, I wanted it to be an experience, not just a shelter. I named it <em>Mayabazar</em> (The Place of Magic), inspired by the classic Telugu film. My goal was to turn a standard living space into a responsive, immersive environment using automation.</p>
+
+                    <p><strong>The Theater</strong><br>
+                    I replaced the TV with a 130-inch projector screen and a 5.1.2 Dolby Atmos system. But the real magic was the orchestration.
+                    <ul>
+                        <li><strong>Voice Command:</strong> "Alexa, begin the show."</li>
+                        <li><strong>Sequence:</strong> Main lights fade out &rarr; Ambient bias lighting fades in &rarr; Projector powers on &rarr; AVR switches inputs &rarr; IR Blaster fires commands to all devices.</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The Personal Touch</strong><br>
+                    Automation shouldn't feel sterile.
+                    <ul>
+                        <li><strong>Interactive Art:</strong> Photo frames of my favorite actors played their iconic dialogues when tapped.</li>
+                        <li><strong>The Doorbell:</strong> Instead of a chime, visitors were greeted by a famous dialogue from the movie <em>Mayabazar</em>.</li>
+                    </ul>
+                    </p>
+
+                    <p><strong>The Identity</strong><br>
+                    Mayabazar became more than just a smart home; it was a monument to my love for cinema and technology. It served as my identity, proving that with enough smart plugs and IR signals, you can live inside a movie.</p>
+
+                    
                 `
             }
         };
@@ -125,6 +406,118 @@
             modal.classList.remove('active');
             document.body.style.overflow = ''; // Restore scrolling
         }
+
+        // Hex Grid Randomization Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const tiles = Array.from(document.querySelectorAll('.hex-tile'));
+            if (tiles.length === 0) return;
+
+            // Config
+            // Config - Reduced size to prevent scrolling
+            const CARD_W = 160;
+            const CARD_H = 184;
+            const GAP = 10;
+            // Effective spacing
+            const X_STEP = CARD_W + GAP;
+            const Y_STEP = (CARD_H * 0.75) + GAP;
+
+            // 1. Generate Random Coords (Axial q, r)
+            // Start with center at 0,0
+            let occupied = new Set(["0,0"]);
+            let coords = [{ q: 0, r: 0 }]; // Assigned to first tile
+
+            // Helper: Get neighbor coords
+            function getNeighbors(q, r) {
+                return [
+                    { q: q + 1, r: r }, { q: q + 1, r: r - 1 }, { q: q, r: r - 1 },
+                    { q: q - 1, r: r }, { q: q - 1, r: r + 1 }, { q: q, r: r + 1 }
+                ];
+            }
+
+            // Helper: Hex Distance from 0,0
+            function hexDist(q, r) {
+                return (Math.abs(q) + Math.abs(q + r) + Math.abs(r)) / 2;
+            }
+
+            // Grow the cluster COMPACTLY
+            for (let i = 1; i < tiles.length; i++) {
+                // Find all valid candidate slots (neighbors of existing tiles that are empty)
+                let candidates = new Set();
+                coords.forEach(pos => {
+                    let neighbors = getNeighbors(pos.q, pos.r);
+                    neighbors.forEach(n => {
+                        let key = `${n.q},${n.r}`;
+                        if (!occupied.has(key)) {
+                            candidates.add(key);
+                        }
+                    });
+                });
+
+                // Convert to array and sort by distance from center
+                let candidateArray = Array.from(candidates);
+                candidateArray.sort((a, b) => {
+                    let [q1, r1] = a.split(',').map(Number);
+                    let [q2, r2] = b.split(',').map(Number);
+                    return hexDist(q1, r1) - hexDist(q2, r2);
+                });
+
+                // Pick randomly from the top 3 closest positions to maintain compaction
+                let topN = Math.min(candidateArray.length, 3);
+                let choiceKey = candidateArray[Math.floor(Math.random() * topN)];
+                let [q, r] = choiceKey.split(',').map(Number);
+
+                occupied.add(choiceKey);
+                coords.push({ q, r });
+            }
+
+            // 2. Shuffle tiles to map to these coords randomly
+            // (Optional: if we want the "Latest" project to be center, don't shuffle coords, just shuffle tiles 1..N)
+            // Let's shuffle the coordinate list itself to randomize shape orientation vs content? 
+            // Actually, best to just map 1:1. The shape is random, the content order index is fixed in HTML.
+
+            // 3. Render and Resize Container
+            const container = document.querySelector('.hex-cluster');
+
+            // Calculate bounds to resize container
+            let minX = Infinity, maxX = -Infinity;
+            let minY = Infinity, maxY = -Infinity;
+
+            // First pass: Calculate bounds
+            coords.forEach(pos => {
+                let { q, r } = pos;
+                let cx = (q + r / 2) * X_STEP;
+                let cy = r * Y_STEP;
+
+                minX = Math.min(minX, cx - CARD_W / 2);
+                maxX = Math.max(maxX, cx + CARD_W / 2);
+                minY = Math.min(minY, cy - CARD_H / 2);
+                maxY = Math.max(maxY, cy + CARD_H / 2);
+            });
+
+            // Update container dimensions
+            const clusterHeight = maxY - minY + 100; // padding
+            container.style.height = `${Math.max(600, clusterHeight)}px`;
+
+            // Calculate offset to center the cluster in the new container
+            const containerCenterX = container.offsetWidth / 2;
+            const containerCenterY = container.offsetHeight / 2;
+            const offsetX = containerCenterX - (minX + maxX) / 2;
+            const offsetY = containerCenterY - (minY + maxY) / 2;
+
+            tiles.forEach((tile, index) => {
+                let { q, r } = coords[index];
+                let x = (q + r / 2) * X_STEP;
+                let y = r * Y_STEP;
+
+                tile.style.left = `${x + offsetX}px`;
+                tile.style.top = `${y + offsetY}px`;
+
+                // Staggered fade in
+                setTimeout(() => {
+                    tile.classList.add('placed');
+                }, index * 50);
+            });
+        });
 
         // Close modal when clicking outside content
         modal.addEventListener('click', (e) => {
