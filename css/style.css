@@ -533,6 +533,30 @@ p {
   color: var(--black);
 }
 
+/* Modal Content Typography Override */
+.modal-content h2 {
+  text-align: center;
+  border-left: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+.modal-content p {
+  text-align: justify;
+}
+
+.modal-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--gray-500);
+}
+
+.modal-content li {
+  margin-bottom: 0.5rem;
+  text-align: justify;
+}
+
 /* EXPLORATION PAGE STYLES */
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
