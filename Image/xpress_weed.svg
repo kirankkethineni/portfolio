@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  <path d="M50,150 Q100,100 150,150 T250,150 T350,150" fill="none" stroke="#bdc3c7" stroke-width="10"/>
+  <path d="M50,150 Q100,100 150,150 T250,150 T350,150" fill="none" stroke="#2c3e50" stroke-width="2" stroke-dasharray="10,10"/>
+  <rect x="180" y="130" width="40" height="40" fill="none" stroke="#e74c3c" stroke-width="3"/>
+  <text x="200" y="280" font-family="monospace" text-anchor="middle" font-size="14" fill="#2c3e50">FEW-SHOT TEXTURE LEARNING</text>
+</svg>

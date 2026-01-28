@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  <circle cx="100" cy="100" r="10" fill="#2c3e50"/>
+  <circle cx="300" cy="100" r="10" fill="#2c3e50"/>
+  <circle cx="200" cy="250" r="10" fill="#e74c3c"/>
+  <line x1="100" y1="100" x2="300" y2="100" stroke="#95a5a6" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="300" y1="100" x2="200" y2="250" stroke="#95a5a6" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="200" y1="250" x2="100" y2="100" stroke="#95a5a6" stroke-width="2" stroke-dasharray="5,5"/>
+  <path d="M100,100 Q200,50 300,100 T200,250 T100,100" fill="none" stroke="#2c3e50" stroke-width="3"/>
+  <text x="200" y="280" font-family="monospace" text-anchor="middle" font-size="14" fill="#2c3e50">GRAPH ROUTE OPTIMIZATION</text>
+</svg>

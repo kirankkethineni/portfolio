@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <rect width="400" height="300" fill="#f8f9fa"/>
+  <path d="M100,150 Q150,50 200,150 T300,150" fill="none" stroke="#2c3e50" stroke-width="3"/>
+  <rect x="90" y="140" width="20" height="20" fill="#bdc3c7" stroke="#2c3e50"/>
+  <rect x="190" y="140" width="20" height="20" fill="#bdc3c7" stroke="#2c3e50"/>
+  <rect x="290" y="140" width="20" height="20" fill="#2c3e50" stroke="#2c3e50"/>
+  <text x="200" y="280" font-family="monospace" text-anchor="middle" font-size="14" fill="#2c3e50">SHAPE PROFILE CLUSTERING</text>
+</svg>
