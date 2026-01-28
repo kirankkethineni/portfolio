@@ -610,9 +610,22 @@ p {
   z-index: 5;
 }
 
+
 /* Specific view overrides */
 #view-map {
   overflow: hidden;
+}
+
+#landscape-title {
+  color: var(--white);
+  background-color: var(--black);
+  padding: 0.5rem 1.5rem;
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  border: 2px solid var(--white);
+  width: fit-content;
+  margin: 2rem auto;
+  border-left: none;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* Sketch Components */
@@ -668,12 +681,23 @@ p {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  font-size: 2rem;
+  font-size: 1.2rem;
   cursor: pointer;
   z-index: 100;
   font-family: 'Patrick Hand', cursive;
   display: none;
-  /* Hidden on root map */
+  background-color: var(--black);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border: 2px solid var(--white);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-arrow:hover {
+  transform: scale(1.05);
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.2);
 }
 
 /* Map specific */
