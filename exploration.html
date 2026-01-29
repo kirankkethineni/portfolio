@@ -213,16 +213,9 @@
             document.getElementById('content-title').innerText = title;
             document.getElementById('content-body').innerText = text;
 
-            // Persist Background
+            // Clear Background for Content View (User Request)
             const viewContent = document.getElementById('view-content');
-            if (currentTopicKey && DATA[currentTopicKey].bgImage) {
-                viewContent.style.backgroundImage = `url('${DATA[currentTopicKey].bgImage}')`;
-                viewContent.style.backgroundSize = 'cover';
-                viewContent.style.backgroundPosition = 'center';
-                viewContent.style.backgroundBlendMode = 'multiply';
-            } else {
-                viewContent.style.backgroundImage = 'none';
-            }
+            viewContent.style.backgroundImage = 'none';
 
             transitionTo(viewContent, 'forward');
             currentLevel = 2;
