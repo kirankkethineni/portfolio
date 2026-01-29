@@ -67,6 +67,15 @@
                     <!-- Content injected here -->
                 </div>
             </div>
+
+            <!-- VIEW 4: GALLERY -->
+            <div id="view-gallery" class="view-section next">
+                <h2 class="sketch-font" style="text-align: center; flex-shrink: 0; margin-bottom: 20px;">My Clicks</h2>
+                <div id="gallery-grid" class="map-grid"
+                    style="padding-bottom: 2rem; height: auto; align-content: start; flex-grow: 1;">
+                    <!-- Images injected here -->
+                </div>
+            </div>
         </div>
 
     </main>
@@ -77,7 +86,7 @@
     <script src="js/main.js"></script>
     <script>
         // State Management
-        let currentLevel = 0; // 0: Map, 1: Landscape, 2: Content
+        let currentLevel = 0; // 0: Map, 1: Landscape, 2: Content, 3: Gallery
         let historyStack = [];
         let currentTopicKey = null; // Track current topic for background persistence
 
@@ -119,8 +128,81 @@
                 title: 'Photography',
                 bgImage: 'images/photography_processed_grayscale.png',
                 topics: [
-                    { id: 'bw', label: 'B&W', content: 'The timeless nature of black and white photography...' },
-                    { id: 'street', label: 'Street', content: 'Capturing candid moments in urban environments...' }
+                    {
+                        id: 'film-vs-digital',
+                        label: 'Film vs Digital',
+                        content: 'Film demands mastery before the moment — no previews, no instant correction, only understanding of light, exposure, and timing. Digital makes creation easier, offering endless chances to adjust colors and tones after the shot. One is discipline before capture; the other is freedom after. Both create images, but only one forces you to truly *see* before you press the shutter.'
+                    },
+                    {
+                        id: 'mirrorless-view',
+                        label: 'Mirrorless Vision',
+                        content: 'Mirrorless cameras show you a processed interpretation of the scene rather than light reflected directly from the world. What you see is already influenced by digital corrections — exposure, white balance, color science. It is convenient and powerful, but it raises a quiet question: are we seeing reality, or the camera’s version of it?'
+                    },
+                    {
+                        id: 'depth-of-field',
+                        label: 'The Magic of Depth of Field',
+                        content: 'Shallow depth of field makes subjects stand out by blurring the background — a look we’ve grown to love. Yet the human eye rarely sees the world this way. Most of what we look at is in focus, with depth naturally preserved. Photography bends reality here, using blur not to replicate vision, but to guide attention and create emotion.'
+                    },
+                    {
+                        id: 'circle-of-confusion',
+                        label: 'Circle of Confusion',
+                        content: 'Focus is not absolute — it is a tolerance. Physics allows small light distortions on the sensor that our eyes cannot detect. This is why some areas appear sharp even when they are not perfectly focused. Longer lenses, with gentler light dispersion, keep more of the scene within this acceptable sharpness, while wider lenses lose focus more dramatically. Clarity is a boundary, not a binary.'
+                    },
+                    {
+                        id: 'dslr-vs-mirrorless',
+                        label: 'DSLR vs Mirrorless',
+                        content: 'Both DSLR and mirrorless cameras share the same core: a sensor capturing light. The difference lies in how we see before the shot. DSLRs use mirrors and prisms to give an optical view straight from reality. Mirrorless systems remove that pathway, showing a digital preview from the sensor itself. One shows the world; the other shows the camera’s interpretation of it.'
+                    },
+                    {
+                        id: 'film-chemistry',
+                        label: 'The Chemistry of Film',
+                        content: 'Film captures light through chemical reactions. When light hits the film, microscopic silver halide crystals respond, permanently recording the scene. These particles are incredibly fine — so fine that a 35mm frame can rival modern multi-megapixel digital sensors in detail. Film is not just an old technology; it is a physical imprint of light itself.'
+                    },
+                    {
+                        id: 'exposure-triangle',
+                        label: 'Shutter, Aperture & ISO',
+                        content: 'Every photograph is a balance of energy. Aperture controls how much light enters, shutter speed controls how long it stays, and ISO adjusts how sensitive the sensor is to that light. Fast motion demands quick shutters, which reduce light — so we open the aperture or increase ISO. Push ISO too far, and the sensor begins to record noise along with light. Exposure is a negotiation, not a setting.'
+                    },
+                    {
+                        id: 'grain-vs-noise',
+                        label: 'Film Grain vs Digital Noise',
+                        content: 'Film grain and digital noise may look similar, but they come from very different origins. Film grain is the texture of chemistry — a natural, organic randomness that adds character. Digital noise is electronic interference, a byproduct of amplified sensor signals. One feels like a signature of the medium; the other feels like a limitation of it.'
+                    },
+                    {
+                        id: 'motion-in-photography',
+                        label: 'The Power of Motion',
+                        content: 'A still camera freezes the world, but motion within a photograph can make the viewer feel part of it. Moving with waves instead of against them, following a subject rather than observing from stillness — these choices turn documentation into experience. Motion does not just show a scene; it carries the audience into it.'
+                    },
+                    {
+                        id: 'dslr-mechanics',
+                        label: 'DSLR Mechanics',
+                        content: 'DSLRs rely on physical movement — mirrors must flip and shutters must travel before each image is captured. That mechanical dance introduces a small delay, a reminder that precision takes motion. Mirrorless systems remove these moving parts, gaining speed and silence. DSLRs feel grounded in engineering; mirrorless feels closer to pure light.'
+                    },
+                    {
+                        id: 'film-camera-mastery',
+                        label: 'The Film Camera',
+                        content: 'Film cameras demand intention. Every frame costs effort, time, and thought. There is no instant feedback, no quick correction — only understanding of light, exposure, and timing. Shooting film feels less like taking pictures and more like practicing a craft, where patience and mastery shape every image.'
+                    },
+                    {
+                        id: 'portraits-bw',
+                        label: 'Portraits in B&W',
+                        content: 'Black and white portraits remove distraction and elevate emotion. Without color competing for attention, expressions, textures, and light take center stage. The background fades in importance, and the human presence becomes more powerful, more timeless, and more direct.'
+                    },
+                    {
+                        id: 'long-exposure',
+                        label: 'Long Exposure',
+                        content: 'Long exposure gathers more than just light — it gathers time. Subtle details that escape the eye become visible when the sensor remains open longer. Motion smooths into flow, stillness deepens, and scenes gain a sense of continuity that a split-second capture can never hold.'
+                    },
+                    {
+                        id: 'vibration-reduction',
+                        label: 'Vibration Reduction',
+                        content: 'Image stabilization is often described as reducing shake, but it is closer to intelligent tracking. As the camera moves, the system shifts elements or the sensor itself to keep the subject aligned. This correction preserves clarity, but it also means part of the sensor’s area is used for compensation rather than pure capture — a trade between stability and maximum resolution.'
+                    },
+                    {
+                        id: 'lens-craftsmanship',
+                        label: 'Why Lenses Cost So Much',
+                        content: 'The price of a lens is not for zoom alone, but for the precision of glass. Each element is shaped to guide light with minimal distortion, preserving detail, contrast, and color before it ever reaches the sensor. A good camera records what it receives; a great lens determines what arrives in the first place.'
+                    }
                 ]
             }
         };
@@ -129,35 +211,27 @@
         const viewMap = document.getElementById('view-map');
         const viewLandscape = document.getElementById('view-landscape');
         const viewContent = document.getElementById('view-content');
+        const viewGallery = document.getElementById('view-gallery');
         const backBtn = document.getElementById('back-btn');
 
         // Transitions
         function transitionTo(nextView, direction) {
             const currentView = getViewElement(currentLevel);
 
-            // Setup positions
             if (direction === 'forward') {
                 nextView.classList.remove('prev');
                 nextView.classList.add('next');
-
-                // Force reflow
-                void nextView.offsetWidth;
-
+                void nextView.offsetWidth; // Force reflow
                 currentView.classList.remove('active');
                 currentView.classList.add('prev');
-
                 nextView.classList.remove('next');
                 nextView.classList.add('active');
             } else {
                 nextView.classList.remove('next');
                 nextView.classList.add('prev');
-
-                // Force reflow
-                void nextView.offsetWidth;
-
+                void nextView.offsetWidth; // Force reflow
                 currentView.classList.remove('active');
                 currentView.classList.add('next');
-
                 nextView.classList.remove('prev');
                 nextView.classList.add('active');
             }
@@ -167,6 +241,7 @@
             if (level === 0) return viewMap;
             if (level === 1) return viewLandscape;
             if (level === 2) return viewContent;
+            if (level === 3) return viewGallery;
         }
 
         function updateUI() {
@@ -199,13 +274,42 @@
             data.topics.forEach(topic => {
                 const el = document.createElement('div');
                 el.className = 'topic-marker';
-                el.innerText = topic.label; // Simple text/icon
+                el.innerText = topic.label;
                 el.onclick = () => goToContent(topic.label, topic.content);
                 container.appendChild(el);
             });
 
+            // Add "My Clicks" Button if Photography
+            if (key === 'photography') {
+                const galleryBtn = document.createElement('div');
+                galleryBtn.className = 'topic-marker';
+                galleryBtn.innerText = 'My Clicks';
+                galleryBtn.onclick = () => openGallery();
+                container.appendChild(galleryBtn);
+            }
+
             transitionTo(viewLandscape, 'forward');
             currentLevel = 1;
+            updateUI();
+        }
+
+        function openGallery() {
+            const container = document.getElementById('gallery-grid');
+            container.innerHTML = '';
+
+            // Loop for processed photos (1 to 44 based on script output)
+            for (let i = 1; i <= 44; i++) {
+                const img = document.createElement('img');
+                img.src = `images/gallery/photo_${i}.jpg`;
+                img.style.width = '100%';
+                img.style.borderRadius = '4px';
+                img.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+                img.loading = 'lazy';
+                container.appendChild(img);
+            }
+
+            transitionTo(viewGallery, 'forward');
+            currentLevel = 3;
             updateUI();
         }
 
@@ -225,7 +329,7 @@
         function goBack() {
             if (currentLevel === 0) return;
 
-            const prevLevel = currentLevel - 1;
+            const prevLevel = (currentLevel === 3) ? 1 : currentLevel - 1; // Gallery goes back to Landscape
             transitionTo(getViewElement(prevLevel), 'back');
             currentLevel = prevLevel;
             updateUI();
