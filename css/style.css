@@ -117,12 +117,24 @@ header {
   border-bottom: 1px solid var(--gray-700);
 }
 
+/* Force baseline alignment for the header content to ensure text lines up perfectly at the bottom */
+header .container {
+  align-items: baseline;
+}
+
 .site-logo {
   font-weight: 700;
   font-size: 1.2rem;
   letter-spacing: 0.5px;
+  display: flex;
+  /* Ensure it behaves as a block/flex item for alignment */
+  align-items: center;
+  line-height: 1;
+  /* Tighten bounding box */
+  /* Removed manual top: -3px */
 }
 
+/* HEADER NAV (Merged) */
 /* HEADER NAV (Merged) */
 .header-nav ul {
   display: flex;
@@ -130,6 +142,8 @@ header {
   list-style: none;
   margin: 0;
   padding: 0;
+  align-items: baseline;
+  /* Align internal items by baseline too */
 }
 
 .header-nav a {
@@ -138,15 +152,26 @@ header {
   font-size: 0.9rem;
   font-weight: 500;
   letter-spacing: 1px;
-  padding-bottom: 4px;
+  padding-bottom: 2px;
+  /* Minimal padding for hover border */
   border-bottom: 2px solid transparent;
   transition: all 0.2s ease;
+  display: block;
+  /* Ensure no extra line-height weirdness */
+  line-height: 1;
+  /* Reset line-height to font-size for specific vertical centering */
 }
 
 .header-nav a:hover,
 .header-nav a.active {
   color: var(--white);
   border-bottom: 2px solid var(--white);
+}
+
+.social-icons {
+  position: relative;
+  top: 6px;
+  /* Visual fix to align icons with text baseline */
 }
 
 .social-icons a {
@@ -670,6 +695,8 @@ li,
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
+  padding-top: 70px;
+  /* Added space for Back button */
   overflow-y: auto;
 }
 
@@ -718,6 +745,8 @@ li,
 /* Specific view overrides */
 #view-map {
   overflow: hidden;
+  padding: 0;
+  /* Reset padding for map */
 }
 
 #view-landscape {

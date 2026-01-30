@@ -9,6 +9,70 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Roboto:wght@300;400;500&display=swap"
         rel="stylesheet">
+    <style>
+        /* Lightbox Styles */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            /* No grayscale filter here to keep it in color */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            font-family: sans-serif;
+            opacity: 0.7;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        /* Map Grid Update for CSS Grid */
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .map-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .map-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -82,6 +146,12 @@
 
     <!-- FOOTER injected by main.js -->
     <footer></footer>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
 
     <script src="js/main.js?v=2"></script>
     <script>
@@ -665,14 +735,18 @@
             const container = document.getElementById('gallery-grid');
             container.innerHTML = '';
 
-            // Loop for processed photos (1 to 44 based on script output)
-            for (let i = 1; i <= 44; i++) {
+            // Loop for processed photos (1 to 71)
+            for (let i = 1; i <= 71; i++) {
                 const img = document.createElement('img');
                 img.src = `images/gallery/photo_${i}.jpg`;
                 img.style.width = '100%';
+                img.style.height = '100%'; /* Grid requirement */
+                img.style.objectFit = 'cover';
                 img.style.borderRadius = '4px';
                 img.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
                 img.loading = 'lazy';
+                img.style.cursor = 'pointer';
+                img.onclick = () => openLightbox(img.src);
                 container.appendChild(img);
             }
 
@@ -742,6 +816,30 @@
                 btn.style.transform = `rotate(${rotation}deg)`;
             });
         }
+
+        // Lightbox Functions
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(e) {
+            if (e.target !== lightboxImg) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "Escape" && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
 
         // Init
         document.addEventListener('DOMContentLoaded', () => {
