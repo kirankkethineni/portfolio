@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* MASONRY LAYOUT */
+        /* GRID LAYOUT */
         .masonry-grid {
-            column-count: 3;
-            column-gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            /* Ensure the container takes up space */
+            min-height: 100vh;
         }
 
         .masonry-item {
-            display: inline-block;
             width: 100%;
-            margin-bottom: 20px;
             cursor: pointer;
             transition: opacity 0.3s ease;
         }
@@ -28,73 +29,26 @@
 
         .masonry-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             /* Grayscale filter doubled down to ensure compliance */
             filter: grayscale(100%);
             display: block;
+            background: #222;
+            /* Placeholder color while loading */
+            min-height: 50px;
         }
 
-        /* LIGHTBOX */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .lightbox.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90vh;
-            filter: grayscale(100%);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 2rem;
-            cursor: pointer;
-            font-family: sans-serif;
-            opacity: 0.7;
-        }
-
-        .lightbox-close:hover {
-            opacity: 1;
-        }
-
-        .lightbox-caption {
-            position: absolute;
-            bottom: 20px;
-            color: #ccc;
-            font-size: 0.9rem;
-            text-align: center;
-            width: 100%;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .masonry-grid {
-                column-count: 2;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 480px) {
             .masonry-grid {
-                column-count: 1;
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -108,13 +62,11 @@
             <a href="explorations.html" class="text-sm" style="color: var(--gray-500);">← Back to Explorations</a>
             <h1 class="mt-2">Photography</h1>
             <p>Studies in light, shadow, and structure. Strictly monochrome.</p>
+            <p style="font-size: 0.8rem; color: #666; margin-top: 5px;">Displaying 71 images</p>
         </section>
 
         <!-- Masonry Grid -->
         <section class="masonry-grid">
-            <!-- Using Placeholders via CSS or SVG if actual images aren't there -->
-            <!-- Generating simple colored (grayscale) placeholders for demo -->
-
             <div class="masonry-item" onclick="openLightbox(this)">
                 <img src="images/gallery/photo_1.jpg" alt="Photography 1">
             </div>
@@ -328,12 +280,7 @@
             <div class="masonry-item" onclick="openLightbox(this)">
                 <img src="images/gallery/photo_71.jpg" alt="Photography 71">
             </div>
-            <div class="masonry-item" onclick="openLightbox(this)">
-                <img src="images/gallery/photo_72.jpg" alt="Photography 72">
-            </div>
-            <div class="masonry-item" onclick="openLightbox(this)">
-                <img src="images/gallery/photo_73.jpg" alt="Photography 73">
-            </div>
+
         </section>
     </main>
 
