@@ -124,7 +124,7 @@
                     I purchased a "Dominion KX4 101" IP KVM from Legrand. It connects to the PC via HDMI and USB, capturing the video stream and sending mouse/keyboard inputs over the network. It requires no software on the target machine. However, there was a catch: it was designed for local network use only. If I was away from home, I couldn't access it.</p>
 
                     <p><strong>The Networking Rabbit Hole</strong><br>
-                    To access the local-only KVM from the outside world, I needed to tunnel into my home network.
+                    To access the local only KVM from the outside world, I needed to tunnel into my home network.
                     <ul>
                         <li><strong>Step 1: VPN Router.</strong> I bought a new router capable of hosting a VPN server to provide a secure entry point into my home network.</li>
                         <li><strong>Step 2: The Dynamic IP Issue.</strong> My ISP cycled my public IP address, causing the VPN connection to fail randomly when I was away.</li>
@@ -145,7 +145,7 @@
                     It started with a simple frustration: I hated paying perpetual subscriptions just to watch movies I loved. Even if I paid for a month, I’d lose access the moment I stopped. When the Telugu movie <em>KA</em> came out, I wanted to own a permanent copy, not just rent stream access.</p>
 
                     <p><strong>Attempt 1: The HDCP Wall</strong><br>
-                    I bought an Nvidia Shield Pro, knowing it had screen recording capabilities. I thought I was set. But when I hit record on a streaming app, I got nothing but a black screen. The culprit? HDCP (High-bandwidth Digital Content Protection). It blocks signal capture at the source.</p>
+                    I bought an Nvidia Shield Pro, knowing it had screen recording capabilities. I thought I was set. But when I hit record on a streaming app, I got nothing but a black screen. The culprit? HDCP (High bandwidth Digital Content Protection). It blocks signal capture at the source.</p>
 
                     <p><strong>Attempt 2: The Workflow Conflict</strong><br>
                     I briefly considered using my IP KVM setup to route the video to my PC. It worked technically, but the viewing window had to be open and active on my desktop to record. It hogged my screen real estate, stopping me from getting any actual work done.</p>
@@ -154,7 +154,7 @@
                     I realized I needed a dedicated capture device that could run in the background.
                     <ul>
                         <li><strong>Capture Card:</strong> I picked up an Elgato Stream Box. Connected to the Shield, it piped the video feed into OBS Studio on my PC.</li>
-                        <li><strong>The Secret Sauce:</strong> The Elgato alone still faced the HDCP black screen. The fix was an HDCP-stripping HDMI splitter.</li>
+                        <li><strong>The Secret Sauce:</strong> The Elgato alone still faced the HDCP black screen. The fix was an HDCP stripping HDMI splitter.</li>
                     </ul>
                     </p>
 
@@ -175,12 +175,12 @@
                     The Orei switch gave me two bad choices:
                     <ul>
                         <li><strong>Standard Mode:</strong> Downscaled everything to 1080p. Good for upstairs, but my beautiful 4K downstairs TV was crippled.</li>
-                        <li><strong>TV Mode:</strong> Maintained 4K downstairs, but the upstairs signal degraded into a washed-out mess of colors.</li>
+                        <li><strong>TV Mode:</strong> Maintained 4K downstairs, but the upstairs signal degraded into a washed out mess of colors.</li>
                     </ul>
                     I swapped it for a <strong>Rocketfish 4K switch</strong>. The picture quality improved, but it introduced a ghost in the machine.</p>
 
                     <p><strong>The Handshake Glitch</strong><br>
-                    If the wireless kit powered on <em>before</em> the TV, the EDID handshake failed. My 4K TV would get confused and display a bizarre 1080p crop (just the top-left corner) of the 4K stream.</p>
+                    If the wireless kit powered on <em>before</em> the TV, the EDID handshake failed. My 4K TV would get confused and display a bizarre 1080p crop (just the top left corner) of the 4K stream.</p>
 
                     <p><strong>The Smart Plug Fix</strong><br>
                     The solution wasn't better video cables—it was automation. I added smart plugs to the entire chain.
@@ -203,7 +203,7 @@
                     <p><strong>The Ingredients</strong><br>
                     <ul>
                         <li>Orei HDMI Matrix (with CEC support)</li>
-                        <li>A 10-year-old spare Windows PC</li>
+                        <li>A 10 year old spare Windows PC</li>
                         <li>EVGA XR1 Lite Capture Card</li>
                         <li>Static IP / DDNS configuration</li>
                     </ul>
@@ -218,10 +218,10 @@
                     Now, by remoting into the PC, we could:
                     1. <strong>See:</strong> View the live feed of any source via the capture card window.
                     2. <strong>Route:</strong> Use the matrix's local web portal (on the PC's browser) to send video to any room.
-                    3. <strong>Control:</strong> Leverage the matrix's HDMI-CEC capabilities to send play/pause/nav commands to the Apple TV or Fire Cube directly from the PC.</p>
+                    3. <strong>Control:</strong> Leverage the matrix's HDMI CEC capabilities to send play/pause/nav commands to the Apple TV or Fire Cube directly from the PC.</p>
 
                     <p><strong>Outcome</strong><br>
-                    We turned a "dumb" local-only matrix into a globally accessible control center using spare parts. No expensive Control4 or Creston system needed—just a capture card and some networking know-how.</p>
+                    We turned a "dumb" local only matrix into a globally accessible control center using spare parts. No expensive Control4 or Creston system needed just a capture card and some networking know how.</p>
 
                     
                 `
@@ -248,7 +248,7 @@
 
                     <p><strong>The Verdict</strong><br>
                     <strong>Cost:</strong> 9 Chromecasts x $30 = ~$270.<br>
-                    <strong>Robustness:</strong> Zero maintenance. Turn on the TV, wait a minute, and the menu appears. We built an enterprise-grade remote management system for the price of a nice dinner.</p>
+                    <strong>Robustness:</strong> Zero maintenance. Turn on the TV, wait a minute, and the menu appears. We built an enterprise grade remote management system for the price of a nice dinner.</p>
 
                     
                 `
@@ -289,8 +289,8 @@
                     <p><strong>The Evaluation Engine (Excel + VBA)</strong><br>
                     I built a custom interactive interface using Excel and VBA scripts.
                     <ul>
-                        <li><strong>Interface:</strong> A dashboard with check-boxes for every specific grading criteria (e.g., "Memory Leak present", "Correct O(n) logic", "Variable Naming").</li>
-                        <li><strong>Logic:</strong> Checking a box triggered the script to pull pre-written, detailed feedback comments and adjust the score automatically.</li>
+                        <li><strong>Interface:</strong> A dashboard with check boxes for every specific grading criteria (e.g., "Memory Leak present", "Correct O(n) logic", "Variable Naming").</li>
+                        <li><strong>Logic:</strong> Checking a box triggered the script to pull pre written, detailed feedback comments and adjust the score automatically.</li>
                         <li><strong>Output:</strong> With one click, the script generated a personalized PDF containing the score breakdown and constructive feedback, ready for upload to the student portal.</li>
                     </ul>
                     </p>
@@ -305,7 +305,7 @@
                 title: "Automating the Automation",
                 content: `
                     <p><strong>The Bottleneck</strong><br>
-                    In a previous DevOps role, the infrastructure provisioning workflow had a manual gap. I would receive infrastructure specifications (sizes, regions, resource counts) in an Excel spreadsheet. My job was to manually translate these specs into JSON configuration files for our Terraform scripts. It was tedious, error-prone, and slow.</p>
+                    In a previous DevOps role, the infrastructure provisioning workflow had a manual gap. I would receive infrastructure specifications (sizes, regions, resource counts) in an Excel spreadsheet. My job was to manually translate these specs into JSON configuration files for our Terraform scripts. It was tedious, error prone, and slow.</p>
 
                     <p><strong>The "Meta" Automation</strong><br>
                     I realized that I was acting as a human parser for structured data. If the input is structured (Excel) and the output is structured (JSON), code should handle the translation. I wrote a Java application to bridge this gap.</p>
@@ -316,16 +316,16 @@
                     3. <strong>Output:</strong> Automatically generates the <code>.tfvars</code> or JSON configuration files required by the pipeline.</p>
 
                     <p><strong>The Impact</strong><br>
-                    This tool essentially "automated the automation." It effectively jumpstarted the provisioning pipeline. Instead of spending hours copy-pasting values and debugging typos, I could feed the Excel sheet into the tool and have the infrastructure spinning up minutes later.</p>
+                    This tool essentially "automated the automation." It effectively jumpstarted the provisioning pipeline. Instead of spending hours copy pasting values and debugging typos, I could feed the Excel sheet into the tool and have the infrastructure spinning up minutes later.</p>
 
                    
                 `
             },
             "fabrication": {
-                title: "The 3-in-1 Micro Factory",
+                title: "The 3 in 1 Micro Factory",
                 content: `
                     <p><strong>The Early Adopter</strong><br>
-                    I picked up my machine back in 2019, during the earlier, wilder days of consumer 3D printing. It's not just a printer—it's a 3-in-1 hybrid workstation capable of FDM 3D printing, laser engraving, and light CNC machining.</p>
+                    I picked up my machine back in 2019, during the earlier, wilder days of consumer 3D printing. It's not just a printer—it's a 3 in 1 hybrid workstation capable of FDM 3D printing, laser engraving, and light CNC machining.</p>
 
                     <p><strong>Use Cases</strong><br>
                     It serves as my personal fabrication lab for both functional and fun projects.
@@ -337,12 +337,12 @@
                     </p>
 
                     <p><strong>The Experience</strong><br>
-                    Ownership involves as much tinkering with the machine as it does making things with it. It’s a constant lesson in calibration, material science, and G-code. But having the ability to turn a digital file into a physical object on my desk never gets old.</p>
+                    Ownership involves as much tinkering with the machine as it does making things with it. It’s a constant lesson in calibration, material science, and G code. But having the ability to turn a digital file into a physical object on my desk never gets old.</p>
 
                 `
             },
             "music_server": {
-                title: "The Zero-Compression Audio Stream",
+                title: "The Zero Compression Audio Stream",
                 content: `
                     <p><strong>The Pursuit of Fidelity</strong><br>
                     I’ve built a massive library of uncompressed WAV files, focusing on the rich transients of Indian classical music and Telugu film scores. But I hit a bottleneck: Bluetooth. Streaming from my phone to my Denon AVR forced the audio through SBC/AAC compression, flattening the dynamics and muddying the details I loved.</p>
@@ -357,7 +357,7 @@
                     </p>
 
                     <p><strong>The Result</strong><br>
-                    Bit-perfect playback. The "ting" of the strings and the deep resonance of the vocals are now crystal clear. I’m finally hearing the music exactly as it was recorded, streamed wirelessly but without loss.</p>
+                    Bit perfect playback. The "ting" of the strings and the deep resonance of the vocals are now crystal clear. I’m finally hearing the music exactly as it was recorded, streamed wirelessly but without loss.</p>
 
                    
                 `
@@ -369,7 +369,7 @@
                     When I rented my first apartment, I wanted it to be an experience, not just a shelter. I named it <em>Mayabazar</em> (The Place of Magic), inspired by the classic Telugu film. My goal was to turn a standard living space into a responsive, immersive environment using automation.</p>
 
                     <p><strong>The Theater</strong><br>
-                    I replaced the TV with a 130-inch projector screen and a 5.1.2 Dolby Atmos system. But the real magic was the orchestration.
+                    I replaced the TV with a 130 inch projector screen and a 5.1.2 Dolby Atmos system. But the real magic was the orchestration.
                     <ul>
                         <li><strong>Voice Command:</strong> "Alexa, begin the show."</li>
                         <li><strong>Sequence:</strong> Main lights fade out &rarr; Ambient bias lighting fades in &rarr; Projector powers on &rarr; AVR switches inputs &rarr; IR Blaster fires commands to all devices.</li>

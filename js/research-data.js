@@ -76,7 +76,7 @@ const RESEARCH_DATA = {
         innovationCaption: "Illustration of Knowledge-Driven Approach.",
         resultsCaption: "Classification results.",
         overview: "A knowledge-driven classification framework that interprets high-level semantic features (visual patterns, colors) rather than just pixel correlations.",
-        problem: "Deep learning 'black boxes' lack interpretability—farmers don't know why a plant disease was classified as the presented label. They also struggle with rare diseases where data is scarce.",
+        problem: "Deep learning 'black boxes' lack interpretability, farmers don't know why a plant disease was classified as the presented label. They also struggle with rare diseases where data is scarce.",
         methodology: "Integrates Natural Language Processing (NLP) to extract semantics (e.g., 'brown spots', 'yellow halo') from text descriptions to build a knowledge base. During inference, a CNN detects these specific semantic features in the image, and a database query classifies the disease based on the logic rule (e.g., IF has_spots AND has_yellow_halo THEN disease_X).",
         novelty: "Decouples feature detection from classification. Can classify new/unseen diseases effectively if their semantic rules are added to the database, without retraining the CNN.",
         results: "Achieved 90% accuracy across 11,000 images covering 21 diseases. Offers superior scalability and human-readable explanations for every diagnosis.",
