@@ -9,7 +9,7 @@ function injectGlobalComponents() {
     // Header Injection
     const headerHTML = `
         <div class="container flex justify-between align-center">
-            <a href="index.html" class="site-logo">KIRAN K KETHINENI</a>
+            <a href="index.html" class="site-logo">KIRAN K. KETHINENI</a>
             
             <nav class="header-nav">
                 <ul style="display: flex; gap: 30px; margin: 0; padding: 0;">
