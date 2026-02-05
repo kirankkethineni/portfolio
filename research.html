@@ -17,6 +17,7 @@
             display: flex;
             gap: 4rem;
             min-height: 60vh;
+            padding-bottom: 3rem;
         }
 
         .research-list {
@@ -189,10 +190,12 @@
                             ${renderImage(project.resultsImage, 'Results', project.resultsCaption)}
                         </div>
 
-                        <div class="mt-4 flex" style="gap:20px;">
+
+                        <div class="mt-4 flex" style="gap:20px; margin-bottom: 2rem;">
                             <a href="${project.paperLink}" class="btn-text" target="_blank">Read Paper</a>
                             <a href="${project.githubLink}" class="btn-text" target="_blank">View Code</a>
                         </div>
+                        <div style="height: 5px; width: 100%;"></div>
                     `;
 
                     // Fade in
