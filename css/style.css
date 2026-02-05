@@ -341,7 +341,8 @@ li,
 /* TIMELINE COMPONENT */
 /* TIMELINE COMPONENT */
 .timeline-scroll-wrapper {
-  max-height: 600px;
+  min-height: 600px;
+  height: calc(100vh - 300px);
   overflow-y: auto;
   position: relative;
   /* Scrollbar Styling */
