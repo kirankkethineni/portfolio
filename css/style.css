@@ -350,7 +350,7 @@ li,
   scrollbar-color: var(--gray-400) var(--gray-100);
   border-top: 1px solid var(--border-light);
   border-bottom: 1px solid var(--border-light);
-  padding: 2rem 0;
+  padding: 2rem 20px;
 }
 
 .timeline-scroll-wrapper::-webkit-scrollbar {
